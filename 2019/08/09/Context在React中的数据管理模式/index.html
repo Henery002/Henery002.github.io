@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,状态管理,数据分发," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。 图片: https:&#x2F;&#x2F;uploader.shimo.im&#x2F;f&#x2F;CjG5PQ7oxOQGhow5.png图 1 React 中的 Context 允许状态数">
+<meta name="keywords" content="设计模式,状态管理,数据分发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Context在React中的数据管理模式">
+<meta property="og:url" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;09&#x2F;Context%E5%9C%A8React%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F&#x2F;index.html">
+<meta property="og:site_name" content="Henery 的博客">
+<meta property="og:description" content="前言React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。 图片: https:&#x2F;&#x2F;uploader.shimo.im&#x2F;f&#x2F;CjG5PQ7oxOQGhow5.png图 1 React 中的 Context 允许状态数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-14T10:04:49.531Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://henery002.github.io/2019/08/09/Context在React中的数据管理模式/"/>
+
+
+
+
+
+  <title>Context在React中的数据管理模式 | Henery 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Henery 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">心路历程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2019/08/09/Context%E5%9C%A8React%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_20190808_014018.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Context在React中的数据管理模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-09T17:36:24+08:00">
+                2019-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/CjG5PQ7oxOQGhow5.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/CjG5PQ7oxOQGhow5.png</a><br>图 1</p>
+<p>React 中的 Context 允许状态数据跨层级传递，从而避免部分冗余的代码逻辑，实现数据透传，解决了上述问题所产生的痛点。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/2X50iPUe5CQ9qsDA.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/2X50iPUe5CQ9qsDA.png</a><br>图 2</p>
+<p>当然，每一种设计模式有其利必有其弊。Context API 实现了组件跨层级的数据通信，同时也带来了一些弊端。所以连官网自己都声明 Context 不是在 React 中实现数据管理的最佳方案。</p>
+<p>尽管如此，Context 在 React 生态圈中的应用也还是很广泛的，诸如 react-redux、react-router，甚至于之前项目里用的 react-dnd，也都用到了 Context API 进行全局状态的管理。作为官网中的 ADVANCE API，开发者也有必要去尝试使用它，并了解它能为我们解决什么问题，又会为我们带来什么问题。</p>
+<h2 id="如何理解-Context"><a href="#如何理解-Context" class="headerlink" title="如何理解 Context"></a>如何理解 Context</h2><p>Context 没有什么复杂的概念，但可以把它与 redux 等 react 的状态管理模式相提并论，可以这样理解 Context：</p>
+<ul>
+<li>函数作用域和作用域链</li>
+</ul>
+<p>js 代码在执行过程中会创建对应的上下文作用域，生成对应的作用域链，代码在执行过程中能够通过作用域链访问代码块内部或者外部的变量和方法。这里就可以把 Context 理解成 React 为组件创建的作用域链，Context 对象的属性就可以看做是作用域链上的活动对象，所以组件通过 Context 就可以访问到父组件链上由 Context 提供的属性和方法。</p>
+<ul>
+<li><p>状态共享的介质</p>
+</li>
+<li><p>不需要优先考虑使用 Context</p>
+</li>
+</ul>
+<p>React 状态管理的推荐模式还是通过 state 或者 props 进行组件间通信，不需要首选 Context 的模式。因为首先在老版本的 React Context API 中，Context 的作用域是有限的，而且在定义和使用的时候并不是非常直观。</p>
+<p>比如旧的 API 中，<strong>父组件提供 Context 首先需要通过 childContextTypes 进行声明，子组件使用父组件的 Context</strong> 属性还需要<strong>使用 contextTypes 进行申请</strong>，从一定程度上来讲，Context 还是没有完全避免 props 层层传递的繁琐性。</p>
+<p>好在新版本的 Context API 解决了这个问题，通过新的 API 优化了 Context 数据透传的方式。但同时 Context 使得组件的复用性变差，组件间的耦合性变高，组件的抽象程度受到了限制。这也应该算是 Context 数据管理模式的一个缺点。所以，并不需要优先考虑使用 Context，但完全可以用。</p>
+<h2 id="适用场景（工作流设计模式）"><a href="#适用场景（工作流设计模式）" class="headerlink" title="适用场景（工作流设计模式）"></a>适用场景（工作流设计模式）</h2><p>那么哪些场景下适合使用 Context？</p>
+<p>既然 Context 官宣用来跨组件进行数据透传，如果有这样一个需求：在一个 React APP 中很多不同层级的子组件都需要用到某一父组件的部分数据，那么使用 Context 就显得很合适。</p>
+<p>说到这里必不可少地要提到 Danastudio v4.0+的工作流模块。工作流模块的代码用来实例讲解 Context 似乎再合适不过。因为它不仅使用新的 Context API 封装 contex，而且包含了<strong>多 Context 嵌套</strong>、<strong>动态创建 Context</strong> 等概念和方式。</p>
+<p>这个模块代码逻辑抽象性很高，封装性强的同时也造成组件嵌套过深，部分模块的耦合性也对应变高。</p>
+<p>根据项目接手时间来看，工作流模块是上海的老哥哥写于 2018 年上半年，也正是这个时间段（2018/03-2018/04），React v16.3 版本发布，推出了 Context 的新 API。</p>
+<ol>
+<li><a href="http://211.144.114.26:5088/trunk/danastudio/blob/dev/web/src/routes/Workflow/include/IDEContext.js#L49" target="_blank" rel="noopener">./Workflow/include/IDEContext.js</a></li>
+</ol>
+<p>图片: <a href="https://uploader.shimo.im/f/iS9CytJZJX0Ly9Jx.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/iS9CytJZJX0Ly9Jx.png</a><br>图 3</p>
+<p>该部分功能用来在工作流画布模块中管理左侧脚本目录树、各个类型脚本之间与上层组件间的部分数据通信。这也就像本节开头说的 Context 所适用的场景。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/Mrot2EXIPT0FwDuY.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/Mrot2EXIPT0FwDuY.png</a><br>图 4</p>
+<p>这里作了以下三件事：</p>
+<ul>
+<li><p>通过 React.createContext <strong>创建多个 Context 对象</strong>；</p>
+</li>
+<li><p>将这些 Context 对象的 Provider 组件挂载到一个 Providers 上一起 export；</p>
+</li>
+<li><p>在 Providers 方法中根据业务逻辑分别返回对应的 <strong>Provider 组件，并赋初值</strong>。</p>
+</li>
+</ul>
+<p>上述逻辑以 Provider 消费者组件为例，Consumer 组件同理。</p>
+<ol start="2">
+<li><a href="http://211.144.114.26:5088/trunk/danastudio/blob/dev/web/src/routes/Workflow/WorkflowIDE.js#L1241" target="_blank" rel="noopener">./Workflow/WorkflowIDE.js</a></li>
+</ol>
+<p>图片: <a href="https://uploader.shimo.im/f/r2qyrPi6q1wsw4Ei.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/r2qyrPi6q1wsw4Ei.png</a><br>图 5</p>
+<p>在上层组件 WorkflowIDE 中，调用 Context.Provider 组件并赋初值。这个组件是整个工作流工作区的顶层组件，其内部嵌套很多 Consumer 子组件，诸如：</p>
+<ul>
+<li>./WorkflowOnlineForm.js</li>
+<li>./WorkflowCreateForm.js</li>
+<li>./flow-components/AccDataX.js</li>
+<li>……</li>
+</ul>
+<p>图片: <a href="https://uploader.shimo.im/f/Ct7IFaTIbUof3FVn.png图片" target="_blank" rel="noopener">https://uploader.shimo.im/f/Ct7IFaTIbUof3FVn.png图片</a>: <a href="https://uploader.shimo.im/f/VVP6xf1J53sxbTmp.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/VVP6xf1J53sxbTmp.png</a><br>图 6</p>
+<p>那么在这些 Consumer 消费者子组件中，通过获取 context 透传的值，去做业务逻辑的处理。比如在创建脚本表单组件中就是这样使用 Consumer 的。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/2opGNi8p2pYI14rB.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/2opGNi8p2pYI14rB.png</a><br>图 7</p>
+<p>到这里，相信看过工作流代码的同学对于工作流模块的数据流管理方式已经有了一个大方向上的认识，不至于再为工作流深层嵌套组件间无法找到如何传值的方式而头晕。</p>
+<p>综合之前我分享讨论的几个话题：render props、hooks（，甚至于 refs），他们和 Context 似乎都涉及到数据管理。在 Context API 里，Cunsumer 子组件使用 context 的方式就与 render props 很相似，它们都会通过使用一个函数来返回最终的 React 节点，并调用 Provider 父组件的 context 值进行数据渲染。</p>
+<h2 id="Context-API"><a href="#Context-API" class="headerlink" title="Context API"></a>Context API</h2><h3 id="旧-Context-API-的缺陷"><a href="#旧-Context-API-的缺陷" class="headerlink" title="旧 Context API 的缺陷"></a>旧 Context API 的缺陷</h3><p>在 Context 早期的版本中定义 Context 组件需要先定义 <em>childContextTypes</em> <em>、getChildContext</em> 才能把 context 传递下去。同时接收组件也要先定义 <em>contextTypes</em> 才能读取到数据，否则即使父组件 Context 中定义了数据，子组件 Context 也会为 _undefined_。</p>
+<p>虽然功能上实现了跨层级数据透传，但本质上还是需要一层一层反复声明如何读取 state，没有真正避免层级嵌套带来的效率问题。</p>
+<p>那么不可避免地，这种写法会受到状态阻断的影响，当某一个传递组件的 context 发生变化时，如果其中一个中间件的 <strong>shouldComponentUpdate</strong> 方法返回 false，那么其后所有组件都不再接受到 context 的变化从而触发 rerender。</p>
+<p>旧的 Context API：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * codesanbox: https://codesandbox.io/s/silly-tu-00dec</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; PureComponent &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; PropTypes &#125; <span class="keyword">from</span> <span class="string">"prop-types"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">DeliverComponent</span> <span class="keyword">extends</span> <span class="title">PureComponent</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  getChildContext() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      color: <span class="string">"#fff"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  render() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">MidComponent</span> /&gt;</span>;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="xml">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="xml">DeliverComponent.childContextTypes = &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  color: PropTypes.string</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="xml">&#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="xml">const MidComponent = props =&gt; <span class="tag">&lt;<span class="name">ReceiverComponent</span> /&gt;</span>;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="xml">const ReceiverComponent = (props, context) =&gt; (</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">color:</span> <span class="attr">context.color</span> &#125;&#125;&gt;</span>接收组件<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="xml">);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="xml">ReceiverComponent.contextTypes = &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  color: PropTypes.string</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="xml">&#125;;</span></span></pre></td></tr></table></figure>
+
+<h2 id="新-Context-API-的应用"><a href="#新-Context-API-的应用" class="headerlink" title="新 Context API 的应用"></a>新 Context API 的应用</h2><ul>
+<li><strong>React.createContext</strong></li>
+</ul>
+<p>创建 Context 对象。用于提供 Provider 和 Consumer 子组件。</p>
+<ul>
+<li><strong>Context.Provider</strong></li>
+</ul>
+<p>Context 对象提供的生产者组件，相当于父组件。通过赋初值，将 state、props 分发给属于该 Provider 的所有 Consumer。</p>
+<p>这里主要与旧版的 Context API 作对比，相当于 getChildContext() 方法。</p>
+<p><strong>注意，Provider 组件并不是必须的</strong>，可以不使用 Context.Provider，Consumer 消费者子组件也能够订阅 Context 的值的变化。只不过此处 Consumer 组件获取到的是 Context 创建时的默认值 defaultValue。</p>
+<ul>
+<li><strong>Class.contextType</strong></li>
+</ul>
+<p>将 Context 对象挂载到 Class 上，contextType 这个属性会接受上面创建的 Context 对象实例，这样就可以在 Class 中的任何生命周期函数甚至于 render() 方法中通过 this.context 来访问 Provider 的数据。</p>
+<ul>
+<li>Context.Consumer</li>
+</ul>
+<p>Context 对象自身提供的 Consumer 组件能够订阅到 context 的变化。<br>在这个组件中，可以直接通过获取到的 context 的值，来完成后续的业务操作，如通过 children 函数读取 value 去遍历列表，返回一个 React 节点。这一点类似于 render props。</p>
+<p><strong>新 Context API：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * codesanbox: https://codesandbox.io/s/silly-tu-00dec</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; PureComponent &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> DEFAULT_VALUE = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  color: <span class="string">"#f83431"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个唯一 Context</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> IDEContext = React.createContext(DEFAULT_VALUE);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MidComponent = <span class="function"><span class="params">props</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">ReceiveComponent</span> /&gt;</span>;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="xml">// Consumer 子组件通过透传的 context 值进行渲染</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="xml">const ReceiveComponent = props =&gt; (</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &lt;IDEContext.Consumer&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#123;context =&gt; &lt;div style=&#123;&#123; color: context.color &#125;&#125;&gt;接收 Context&lt;/div&gt;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">IDEContext.Consumer</span>&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="xml">);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="xml">export default class DeliverComponent extends PureComponent &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  state = &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="xml">    color: "#fff"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  render() &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="xml">    return (</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      &lt;IDEContext.Provider value=&#123;this.state&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        &lt;MidComponent&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">          &lt;ReceiveComponent /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        &lt;/MidComponent&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">IDEContext.Provider</span>&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="xml">    );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="xml">&#125;</span></span></pre></td></tr></table></figure>
+
+<p><strong>新的 API 在数据传递过程中不会被 shouldComponentUpdate 阻断</strong>，因为它不再需要一层一层声明 Context 上定义的属性值，我们只需要关注 Provider 中的 store 的变化。</p>
+<h2 id="Context-在-React-Router-中的应用"><a href="#Context-在-React-Router-中的应用" class="headerlink" title="Context 在 React-Router 中的应用"></a>Context 在 React-Router 中的应用</h2><p>react-router 实现路由管理所使用的几个核心组件 <code>&lt;Router /&gt;</code>、<code>&lt;Route /&gt;</code>、<code>&lt;Link /&gt;</code>、<code>&lt;Redirect /&gt;</code> 等，就是通过使用 Contex 在这些组件之间共享 router 数据来完成的。</p>
+<p>可以翻阅 <a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules" target="_blank" rel="noopener">react-router</a> 源码，进一步了解其设计思想。</p>
+<ol>
+<li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules/RouterContext.js" target="_blank" rel="noopener">RouterContext.js</a></li>
+</ol>
+<p>RouterContext.js 创建并导出了一个名为 context 的 Context，预留给 Router、Route 使用。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/UqMn8RlRrbwiJGum.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/UqMn8RlRrbwiJGum.png</a><br>图 8</p>
+<ol start="2">
+<li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules/Router.js" target="_blank" rel="noopener">Router.js</a></li>
+</ol>
+<p><code>&lt;Route /&gt;</code>作为子组件必须嵌套在<code>&lt;Router /&gt;</code>中使用，所以 <code>&lt;Router /&gt;</code> 作为生产者 Provider 组件，核心思想就是为子组件提供一个带有 router 属性的 Context，同时监听 history，一旦 history 发生变化，便通过 setState()触发组件重新渲染。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/bvTnfR1HKfsmdfUF.png图片" target="_blank" rel="noopener">https://uploader.shimo.im/f/bvTnfR1HKfsmdfUF.png图片</a>: <a href="https://uploader.shimo.im/f/UhcFgwCLDhEGalOA.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/UhcFgwCLDhEGalOA.png</a><br>图 9</p>
+<ol start="3">
+<li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules/Route.js" target="_blank" rel="noopener">Route.js</a></li>
+</ol>
+<p>所以，<code>&lt;Route / &gt;</code>组件作为 Consumer Component，通过从 RouterContext 的 Provider 提供的 context 值，返回一个 children function，去渲染路由数据。</p>
+<p>图片: <a href="https://uploader.shimo.im/f/dQiEyDgdkhgaq1oV.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/dQiEyDgdkhgaq1oV.png</a><br>图片: <a href="https://uploader.shimo.im/f/KQjUFSIlAIsRkrbt.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/KQjUFSIlAIsRkrbt.png</a><br>图 10</p>
+<h2 id="Redux-与-Context"><a href="#Redux-与-Context" class="headerlink" title="Redux 与 Context"></a>Redux 与 Context</h2><p>redux 的状态管理遵循单一数据流的模式，外部事件通过调用 dispatch 发起 action 到 recuder 中更新 state。react-redux 核心内容包含两个部分：Provider 组件、connect 函数，其中：</p>
+<ol>
+<li><p><strong>Provider</strong> 组件将全局唯一的数据源 <strong>store 注入到 context 中</strong>；</p>
+</li>
+<li><p><strong>connect</strong> 方法<strong>把 Context 中由 Provider 注入的 store 取出，并通过 props 分发到子组件中</strong>，从而使得子组件能够获取到 redux 中的 store 数据。</p>
+</li>
+</ol>
+<p>react-redux 的源码我没有仔细翻读，但其大致思想和上述 react-router 类似，这里贴上 Provider.js 组件的部分核心代码供参阅：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * react-redux: Provider.js 核心源码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Provider</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">super</span>(props);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> &#123; store &#125; = props; <span class="comment">// 全局 store</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.state = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      store,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      subscription</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.previousState = store.getState();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  componentDidMount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.state.subscription.trySubscribe();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.previousState !== <span class="keyword">this</span>.props.store.getState()) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">this</span>.state.subscription.notifyNestedSubs();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  componentWillUnmount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.unsubscribe) <span class="keyword">this</span>.unsubscribe();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.state.subscription.tryUnsubscribe();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  render() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> Context = <span class="keyword">this</span>.props.context || ReactReduxContext;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">      &lt;Context.Provider value=&#123;<span class="keyword">this</span>.state&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        &#123;<span class="keyword">this</span>.props.children&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">      &lt;<span class="regexp">/Context.Provider&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">    );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">/</span><span class="regexp">/ ...</span></span></pre></td></tr></table></figure>
+
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ol>
+<li>React 中可以通过 Context 进行数据透传，避免了父子级层层传递 props。那么<br>使用 Context 如何从子级向父级进行跨组件数据透传？</li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>相比 props 和 state，React 的 Context 可以实现跨层级的组件通信。</p>
+</li>
+<li><p>Context API 的使用基于生产者消费者模式。生产者一方，通过组件静态属性 childContextTypes 声明，然后通过实例方法 getChildContext()创建 Context 对象。消费者一方，通过组件静态属性 contextTypes 申请要用到的 Context 属性，然后通过实例的 context 访问 Context 的属性。</p>
+</li>
+<li><p>合理适当使用 Context。如果可以做到保证 Context 的可控性、耦合性在合理范围内，可以考虑使用。</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<p>其他诸如上述 Context 的优缺点、特性等内容。</p>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><ol>
+<li><a href="https://reactjs.org/docs/context.html#api" target="_blank" rel="noopener">React 官网</a> - Context API</li>
+<li><a href="https://zhuanlan.zhihu.com/p/50336226" target="_blank" rel="noopener">避免 React Context 导致的重复渲染</a> - 程墨 Morgan [知乎]</li>
+<li><a href="https://zhuanlan.zhihu.com/p/33925435" target="_blank" rel="noopener">从新的 Context API 看 React 应用设计模式</a> - 诚身 [知乎]</li>
+<li><strong><a href="https://zapier.com/engineering/how-to-build-redux/" target="_blank" rel="noopener">Build Yourself a Redux</a></strong> - Justin Deal [zapier]</li>
+<li><a href="https://zhuanlan.zhihu.com/p/20381597" target="_blank" rel="noopener">深入理解 react-router 路由系统</a> - 范洪春 [知乎]</li>
+<li><a href="https://juejin.im/post/5cf5d24d6fb9a07eb55f4802" target="_blank" rel="noopener">你不必使用 Redux：比较 prop 钻取、Redux 和 React Context API</a> - Ioodu [知乎]</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/" rel="tag"># 状态管理</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E5%8F%91/" rel="tag"># 数据分发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/05/Refs%E8%BD%AC%E5%8F%91/" rel="next" title="Refs转发">
+                <i class="fa fa-chevron-left"></i> Refs转发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_20190808_014018.jpg"
+                alt="魏范光" />
+            
+              <p class="site-author-name" itemprop="name">魏范光</p>
+              <p class="site-description motion-element" itemprop="description">我心思慕你，如鹿思慕溪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何理解-Context"><span class="nav-number">2.</span> <span class="nav-text">如何理解 Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景（工作流设计模式）"><span class="nav-number">3.</span> <span class="nav-text">适用场景（工作流设计模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-API"><span class="nav-number">4.</span> <span class="nav-text">Context API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旧-Context-API-的缺陷"><span class="nav-number">4.1.</span> <span class="nav-text">旧 Context API 的缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新-Context-API-的应用"><span class="nav-number">5.</span> <span class="nav-text">新 Context API 的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-在-React-Router-中的应用"><span class="nav-number">6.</span> <span class="nav-text">Context 在 React-Router 中的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux-与-Context"><span class="nav-number">7.</span> <span class="nav-text">Redux 与 Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-number">8.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">9.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章："><span class="nav-number">10.</span> <span class="nav-text">参考文章：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏范光</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
