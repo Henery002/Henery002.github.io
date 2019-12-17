@@ -79,16 +79,30 @@
 
 
 
-<meta name="description" content="前言React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。 图片: https:&#x2F;&#x2F;uploader.shimo.im&#x2F;f&#x2F;CjG5PQ7oxOQGhow5.png图 1 React 中的 Context 允许状态数">
+<meta name="description" content="前言React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。  React 中的 Context 允许状态数据跨层级传递，从而避免部分冗余的代码逻辑，实现数据透传，解决了上述问题所产生的痛点。  当然，每一种设计模式有">
 <meta name="keywords" content="设计模式,状态管理,数据分发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Context在React中的数据管理模式">
 <meta property="og:url" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;09&#x2F;Context%E5%9C%A8React%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="Henery 的博客">
-<meta property="og:description" content="前言React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。 图片: https:&#x2F;&#x2F;uploader.shimo.im&#x2F;f&#x2F;CjG5PQ7oxOQGhow5.png图 1 React 中的 Context 允许状态数">
+<meta property="og:description" content="前言React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。  React 中的 Context 允许状态数据跨层级传递，从而避免部分冗余的代码逻辑，实现数据透传，解决了上述问题所产生的痛点。  当然，每一种设计模式有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-14T10:04:49.531Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;01.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;02.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;03.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;04.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;05.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;06.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;07.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;08.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;09.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;10.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;11.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;12.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;13.png">
+<meta property="og:updated_time" content="2019-12-17T15:53:04.264Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2019&#x2F;08&#x2F;images&#x2F;context&#x2F;01.png">
 
 
 
@@ -296,7 +310,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魏范光">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_20190808_014018.jpg">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -359,9 +373,9 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>React 使用单向数据流的设计模式进行数据管理，也就是说父子组件间的数据通信需要依靠 state 或 props 进行传递。如果你的组件层级嵌套较深，那么依然需要一层一层进行 props 的传递（Redux 等状态管理方案暂且不讨论）。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/CjG5PQ7oxOQGhow5.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/CjG5PQ7oxOQGhow5.png</a><br>图 1</p>
+<p><img src="../../images/context/01.png" alt="图1"></p>
 <p>React 中的 Context 允许状态数据跨层级传递，从而避免部分冗余的代码逻辑，实现数据透传，解决了上述问题所产生的痛点。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/2X50iPUe5CQ9qsDA.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/2X50iPUe5CQ9qsDA.png</a><br>图 2</p>
+<p><img src="../../images/context/02.png" alt="图2"></p>
 <p>当然，每一种设计模式有其利必有其弊。Context API 实现了组件跨层级的数据通信，同时也带来了一些弊端。所以连官网自己都声明 Context 不是在 React 中实现数据管理的最佳方案。</p>
 <p>尽管如此，Context 在 React 生态圈中的应用也还是很广泛的，诸如 react-redux、react-router，甚至于之前项目里用的 react-dnd，也都用到了 Context API 进行全局状态的管理。作为官网中的 ADVANCE API，开发者也有必要去尝试使用它，并了解它能为我们解决什么问题，又会为我们带来什么问题。</p>
 <h2 id="如何理解-Context"><a href="#如何理解-Context" class="headerlink" title="如何理解 Context"></a>如何理解 Context</h2><p>Context 没有什么复杂的概念，但可以把它与 redux 等 react 的状态管理模式相提并论，可以这样理解 Context：</p>
@@ -386,9 +400,9 @@
 <ol>
 <li><a href="http://211.144.114.26:5088/trunk/danastudio/blob/dev/web/src/routes/Workflow/include/IDEContext.js#L49" target="_blank" rel="noopener">./Workflow/include/IDEContext.js</a></li>
 </ol>
-<p>图片: <a href="https://uploader.shimo.im/f/iS9CytJZJX0Ly9Jx.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/iS9CytJZJX0Ly9Jx.png</a><br>图 3</p>
+<p><img src="../../images/context/03.png" alt="图3"></p>
 <p>该部分功能用来在工作流画布模块中管理左侧脚本目录树、各个类型脚本之间与上层组件间的部分数据通信。这也就像本节开头说的 Context 所适用的场景。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/Mrot2EXIPT0FwDuY.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/Mrot2EXIPT0FwDuY.png</a><br>图 4</p>
+<p><img src="../../images/context/04.png" alt="图4"></p>
 <p>这里作了以下三件事：</p>
 <ul>
 <li><p>通过 React.createContext <strong>创建多个 Context 对象</strong>；</p>
@@ -402,7 +416,7 @@
 <ol start="2">
 <li><a href="http://211.144.114.26:5088/trunk/danastudio/blob/dev/web/src/routes/Workflow/WorkflowIDE.js#L1241" target="_blank" rel="noopener">./Workflow/WorkflowIDE.js</a></li>
 </ol>
-<p>图片: <a href="https://uploader.shimo.im/f/r2qyrPi6q1wsw4Ei.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/r2qyrPi6q1wsw4Ei.png</a><br>图 5</p>
+<p><img src="../../images/context/05.png" alt="图5"></p>
 <p>在上层组件 WorkflowIDE 中，调用 Context.Provider 组件并赋初值。这个组件是整个工作流工作区的顶层组件，其内部嵌套很多 Consumer 子组件，诸如：</p>
 <ul>
 <li>./WorkflowOnlineForm.js</li>
@@ -410,9 +424,9 @@
 <li>./flow-components/AccDataX.js</li>
 <li>……</li>
 </ul>
-<p>图片: <a href="https://uploader.shimo.im/f/Ct7IFaTIbUof3FVn.png图片" target="_blank" rel="noopener">https://uploader.shimo.im/f/Ct7IFaTIbUof3FVn.png图片</a>: <a href="https://uploader.shimo.im/f/VVP6xf1J53sxbTmp.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/VVP6xf1J53sxbTmp.png</a><br>图 6</p>
+<p><img src="../../images/context/06.png" alt="图6-1"> <img src="../../images/context/07.png" alt="图6-2"></p>
 <p>那么在这些 Consumer 消费者子组件中，通过获取 context 透传的值，去做业务逻辑的处理。比如在创建脚本表单组件中就是这样使用 Consumer 的。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/2opGNi8p2pYI14rB.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/2opGNi8p2pYI14rB.png</a><br>图 7</p>
+<p><img src="../../images/context/08.png" alt="图7"></p>
 <p>到这里，相信看过工作流代码的同学对于工作流模块的数据流管理方式已经有了一个大方向上的认识，不至于再为工作流深层嵌套组件间无法找到如何传值的方式而头晕。</p>
 <p>综合之前我分享讨论的几个话题：render props、hooks（，甚至于 refs），他们和 Context 似乎都涉及到数据管理。在 Context API 里，Cunsumer 子组件使用 context 的方式就与 render props 很相似，它们都会通过使用一个函数来返回最终的 React 节点，并调用 Provider 父组件的 context 值进行数据渲染。</p>
 <h2 id="Context-API"><a href="#Context-API" class="headerlink" title="Context API"></a>Context API</h2><h3 id="旧-Context-API-的缺陷"><a href="#旧-Context-API-的缺陷" class="headerlink" title="旧 Context API 的缺陷"></a>旧 Context API 的缺陷</h3><p>在 Context 早期的版本中定义 Context 组件需要先定义 <em>childContextTypes</em> <em>、getChildContext</em> 才能把 context 传递下去。同时接收组件也要先定义 <em>contextTypes</em> 才能读取到数据，否则即使父组件 Context 中定义了数据，子组件 Context 也会为 _undefined_。</p>
@@ -449,17 +463,17 @@
 <li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules/RouterContext.js" target="_blank" rel="noopener">RouterContext.js</a></li>
 </ol>
 <p>RouterContext.js 创建并导出了一个名为 context 的 Context，预留给 Router、Route 使用。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/UqMn8RlRrbwiJGum.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/UqMn8RlRrbwiJGum.png</a><br>图 8</p>
+<p><img src="../../images/context/09.png" alt="图8"></p>
 <ol start="2">
 <li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules/Router.js" target="_blank" rel="noopener">Router.js</a></li>
 </ol>
 <p><code>&lt;Route /&gt;</code>作为子组件必须嵌套在<code>&lt;Router /&gt;</code>中使用，所以 <code>&lt;Router /&gt;</code> 作为生产者 Provider 组件，核心思想就是为子组件提供一个带有 router 属性的 Context，同时监听 history，一旦 history 发生变化，便通过 setState()触发组件重新渲染。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/bvTnfR1HKfsmdfUF.png图片" target="_blank" rel="noopener">https://uploader.shimo.im/f/bvTnfR1HKfsmdfUF.png图片</a>: <a href="https://uploader.shimo.im/f/UhcFgwCLDhEGalOA.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/UhcFgwCLDhEGalOA.png</a><br>图 9</p>
+<p><img src="../../images/context/10.png" alt="图9-1"> <img src="../../images/context/11.png" alt="图9-2"></p>
 <ol start="3">
 <li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/modules/Route.js" target="_blank" rel="noopener">Route.js</a></li>
 </ol>
 <p>所以，<code>&lt;Route / &gt;</code>组件作为 Consumer Component，通过从 RouterContext 的 Provider 提供的 context 值，返回一个 children function，去渲染路由数据。</p>
-<p>图片: <a href="https://uploader.shimo.im/f/dQiEyDgdkhgaq1oV.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/dQiEyDgdkhgaq1oV.png</a><br>图片: <a href="https://uploader.shimo.im/f/KQjUFSIlAIsRkrbt.png" target="_blank" rel="noopener">https://uploader.shimo.im/f/KQjUFSIlAIsRkrbt.png</a><br>图 10</p>
+<p><img src="../../images/context/12.png" alt="图10-1"> <img src="../../images/context/13.png" alt="图10-2"></p>
 <h2 id="Redux-与-Context"><a href="#Redux-与-Context" class="headerlink" title="Redux 与 Context"></a>Redux 与 Context</h2><p>redux 的状态管理遵循单一数据流的模式，外部事件通过调用 dispatch 发起 action 到 recuder 中更新 state。react-redux 核心内容包含两个部分：Provider 组件、connect 函数，其中：</p>
 <ol>
 <li><p><strong>Provider</strong> 组件将全局唯一的数据源 <strong>store 注入到 context 中</strong>；</p>
@@ -601,7 +615,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/IMG_20190808_014018.jpg"
+                src="/images/img/avatar_01.jpg"
                 alt="魏范光" />
             
               <p class="site-author-name" itemprop="name">魏范光</p>
@@ -628,7 +642,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
