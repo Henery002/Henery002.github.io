@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="开发环境,Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Henery 的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="2018&#x2F;02&#x2F;28 16:39 在自己的计算机（主机名：myCent）上配置 Linux、xshell、xftp 成功：虚拟机名：Henery CentOS用 户 名：root密 码：datatom  大致过程：1. 安装 CentOS 7，配置 IP [注]：安装第一步中选择“自定义”安装。   在安装完 CentOS 后，创建虚拟机时，必须将虚拟机参数：网络适配器-网络连接设置为 桥接模式">
+<meta name="keywords" content="开发环境,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在本地计算机搭建Linux开发环境">
+<meta property="og:url" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83&#x2F;index.html">
+<meta property="og:site_name" content="Henery 的博客">
+<meta property="og:description" content="2018&#x2F;02&#x2F;28 16:39 在自己的计算机（主机名：myCent）上配置 Linux、xshell、xftp 成功：虚拟机名：Henery CentOS用 户 名：root密 码：datatom  大致过程：1. 安装 CentOS 7，配置 IP [注]：安装第一步中选择“自定义”安装。   在安装完 CentOS 后，创建虚拟机时，必须将虚拟机参数：网络适配器-网络连接设置为 桥接模式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;01.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;02.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;03.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;04.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;05.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;06.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;07.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;08.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;09.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;10.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;11.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;12.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;13.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;14.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;15.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;16.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;17.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;18.png">
+<meta property="og:updated_time" content="2019-12-18T15:09:38.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;02&#x2F;28&#x2F;images&#x2F;linux-environment&#x2F;01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://henery002.github.io/2018/02/28/2-1. 在本地计算机搭建Linux开发环境/"/>
+
+
+
+
+
+  <title>在本地计算机搭建Linux开发环境 | Henery 的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c37933cfeefcf4766b4da5ed73468b66";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Henery 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">心路历程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/02/28/2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在本地计算机搭建Linux开发环境</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T16:39:00+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">工程搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>2018/02/28 16:39 在自己的计算机（主机名：myCent）上配置 Linux、xshell、xftp 成功：<br>虚拟机名：Henery CentOS<br>用 户 名：root<br>密 码：datatom</p>
+</blockquote>
+<h3 id="大致过程："><a href="#大致过程：" class="headerlink" title="大致过程："></a>大致过程：</h3><h4 id="1-安装-CentOS-7，配置-IP"><a href="#1-安装-CentOS-7，配置-IP" class="headerlink" title="1. 安装 CentOS 7，配置 IP"></a>1. 安装 CentOS 7，配置 IP</h4><blockquote>
+<p>[注]：安装第一步中选择“自定义”安装。</p>
+</blockquote>
+<ol>
+<li><p>在安装完 CentOS 后，创建虚拟机时，必须将虚拟机参数：网络适配器-网络连接设置为 桥接模式（不是 NAT 模式），否则在后续使用 xshell 时无法连接到虚拟主机。<br><img src="../images/linux-environment/01.png" alt="1"></p>
+</li>
+<li><p>配置虚拟机 IP，然后重启网络<br>vi /etc/sysconfig/network-scripts/ifcfg-ens33<br><img src="../images/linux-environment/02.png" alt="2">（该内容在 02-2 中有记录，在自己的计算机上配置的 IP 为 192.168.1.221）<br>service network restart<br>查看 linux IP 是否设置成功：<br>ip addr<br><img src="../images/linux-environment/03.png" alt="3"></p>
+</li>
+</ol>
+<h4 id="2-安装-nodejs、npm"><a href="#2-安装-nodejs、npm" class="headerlink" title="2. 安装 nodejs、npm"></a>2. 安装 nodejs、npm</h4><ol>
+<li><p>官网下载 nodejs 对应版本压缩包（此处下载到 v8.9.3 版本，后来(第 3 步中)证明 v8.9 的版本过高，存在问题，此处建议直接安装 v7.9.0 版本），可使用 xftp 上传到 linux 服务器（可放在 /tmp 目录下）<br><img src="../images/linux-environment/04.png" alt="4"></p>
+</li>
+<li><p>使用 tar -xvf node-v8.9.3-linux-x64.tar.xz 命令在当前文件夹 /tmp 解压（后来发现 /tmp 文件夹下的文件存在关机后消失问题，所以可以更换保存路径于 /opt 下）<br><img src="../images/linux-environment/05.png" alt="5"></p>
+</li>
+<li><p>通过建立软连接，将 node、npm 变为全局命令。参考文章：<a href="https://www.cnblogs.com/liuqi/p/6483317.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuqi/p/6483317.html</a><br><img src="../images/linux-environment/06.png" alt="6"></p>
+<p>查看，安装成功：<br><img src="../images/linux-environment/07.png" alt="7"><br>后来重装 node 后，更改了安装位置：</p>
+<p><img src="../images/linux-environment/08.png" alt="8"><br>【注】：</p>
+<ol>
+<li><p>在安装 node、npm 时，当执行 node -v 或 npm -v 命令，系统提示权限不够时，可使用以下方法解决：<br>进入到 node 或 npm 所在路径下，执行 chmod a+x npm 或 chmod a+x node 为文件设定可访问权限。具体可百度。</p>
+</li>
+<li><p>软连接配置成功后可到 .usr/local/bin 下查看：<br><img src="../images/linux-environment/09.png" alt="9"></p>
+</li>
+<li><p>上述安装了 node 的高版本，再使用时会带来一些意外报错问题，建议将 nodejs 降级（v7 版本）。<br>如：在 d-vault 项目中启动服务（npm start）时，报错（Node-Sass 不支持问题）导致无法开启项目：<br><img src="../images/linux-environment/10.png" alt="10"></p>
+<p>由于上述方法采用 通过解压 node.tar 包、设置软连接 的方式安装 node，所以要将 node 重装到 v7 版本时，只需要：</p>
+<ol>
+<li>删除原 node.tar 包 解压出来的文件夹</li>
+<li>删除原设置的软连接<br>cd /usr/local/bin<br>rm -rf node<br>rm -rf npm</li>
+<li>重新下载所需版本 node.tar 包，解压</li>
+<li>重新设置软连接<br>ln -s /tmp/node-v7.9.0-linux-x64/bin/npm /usr/local/bin<br>ln -s /tmp/node-v7.9.0-linux-x64/bin/node /usr/local/bin</li>
+<li>检查是否安装成功<br>node -v<br>npm -v</li>
+</ol>
+<p>由于上述重装了 node，所以需要重装一下 node-sass ，然后再次运行 npm start ：<br>npm install node-sass<br><img src="../images/linux-environment/11.png" alt="11"><br><img src="../images/linux-environment/12.png" alt="12"><br>尽管依然有报错，但未影响服务开启。</p>
+<p>【注】：安装 nodejs，还有其他方式，上述只是其中一种。</p>
+</li>
+<li><p>安装 git，拉取代码库<br>若 CentOS 系统未自带 git 版本，可使用 yum 命令安装 git ，但是版本较低。后续可重装高版本 git。<br>参考文章：<a href="http://blog.csdn.net/lianxiaopang/article/details/78501569" target="_blank" rel="noopener">CentOS 安装升级高版本 git</a>，以下为该文章解决方式。</p>
+<ol>
+<li><p>yum install git #安装过程较冗长，慢慢等待。此命令安装了 git v1 版本较低<br>【注】：在运行 yum 命令时，系统可能会报错：Could not retrieve mirrorlist <a href="http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os" target="_blank" rel="noopener">http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os</a> error was14:……<br>解决方法：配置 /etc/resolv.conf 文件。参考文章：<a href="http://blog.csdn.net/a791123503/article/details/77823498" target="_blank" rel="noopener">http://blog.csdn.net/a791123503/article/details/77823498</a><br>vi /etc/resolv.conf<br>键入：nameserver 8.8.8.8<br>search localdomain #后保存退出<br><img src="../images/linux-environment/13.png" alt="13"><br>可成功解决 yum 命令上述异常执行的问题</p>
+</li>
+<li><p>yum remove git #先卸载低版本 git</p>
+</li>
+<li><p>yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel gcc perl-ExtUtils-MakeMaker package #安装依赖包<br> 【注】：在同事电脑上首次安装 linux、在 linux 在安装 git、安装 git 依赖包时，执行该命令不久后安装进程停滞：<br> <img src="../images/linux-environment/14.jpg" alt="14"><br> 电脑蓝屏<br> 【解决】是否能解决待验证：百度 <a href="https://blog.csdn.net/dmt742055597/article/details/78580008?locationNum=10&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/dmt742055597/article/details/78580008?locationNum=10&amp;fps=1</a><br> 错误原因：未安装 deltarpm<br> 依次执行：<br> yum provides ‘*/applydeltarpm’<br> yum install deltarpm<br> 然后再重新继续执行依赖包安装</p>
+</li>
+<li><p>下载高版本 git ( <a href="https://www.kernel.org/pub/software/scm/git/git-2.13.2.tar.gz)，使用命令" target="_blank" rel="noopener">https://www.kernel.org/pub/software/scm/git/git-2.13.2.tar.gz)，使用命令</a> tar -xvf name 解压放于 linux 服务器 /usr/src 下</p>
+</li>
+<li><p>cd git-2.13.2<br>./configure –prefix=/usr/local/git all<br>make &amp;&amp; make install</p>
+</li>
+<li><p>将 git 加入环境变量<br>echo “export PATH=$PATH:/usr/local/git/bin” &gt;&gt; /etc/bashrc<br>source /etc/bashrc</p>
+</li>
+<li><p>验证 git 是否安装成功<br>git –version #非 git -v<br><img src="../images/linux-environment/15.png" alt="15"></p>
+</li>
+<li><p>安装 git lfs（暂略）</p>
+</li>
+<li><p>拉取代码库<br>git clone “<a href="http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git&quot;" target="_blank" rel="noopener">http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git&quot;</a><br>此处报错：fatal: Unable to find remote helper for ‘http’<br><img src="../images/linux-environment/16.png" alt="16"></p>
+<p><strong><em>法一：</em></strong><br>查阅资料发现可能是由于 git 版本缺少 curl 和 expat 组件的支持，通过以下方式解决：（参考文章：）<br><a href="https://stackoverflow.com/questions/4569089/cant-update-rvm-fatal-unable-to-find-remote-helper-for-http" target="_blank" rel="noopener">https://stackoverflow.com/questions/4569089/cant-update-rvm-fatal-unable-to-find-remote-helper-for-http</a></p>
+<ol>
+<li>下载 git 的 tar 包，解压于 /usr/src 下</li>
+<li>cd git-2.13.2</li>
+<li>./configure –with-curl –with-expat</li>
+<li>make</li>
+<li>sudo make install<br>重新执行 git clone，成功拉取。</li>
+</ol>
+<p><strong><em>法二：</em></strong><br>后来发现法一已经不再生效，所以查找到法二。<br>原因为 curl-devel 未安装<br>参考文章：<a href="https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone" target="_blank" rel="noopener">https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone</a><br><img src="../images/linux-environment/17.png" alt="17"></p>
+<ol>
+<li>yum install curl-devel</li>
+<li>#cd to anywhere the source for git is</li>
+<li>cd /usr/src/git-2.13.2 #linux 下 git 的安装位置</li>
+<li>./configure</li>
+<li>make</li>
+<li>make install<br>重新执行 git clone ，成功。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="3-安装-Xshell-5、Xftp-5"><a href="#3-安装-Xshell-5、Xftp-5" class="headerlink" title="3. 安装 Xshell 5、Xftp 5"></a>3. 安装 Xshell 5、Xftp 5</h4><p>使用虚拟主机 ip 连接到虚拟主机，键入 用户名和密码 连接。<br><img src="../images/linux-environment/18.png" alt="18"></p>
+<h4 id="4-……"><a href="#4-……" class="headerlink" title="4. ……"></a>4. ……</h4>
+      
+    </div>
+    
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束&nbsp;<i class="fa fa-paw"></i>&nbsp;感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>举手之劳，你就可以推动GDP增长，维护世界和平</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/img/wechat.png" alt="魏范光 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/img/alipay.jpg" alt="魏范光 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="tag"><i class="fa fa-tag"> 开发环境</i></a>
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"> Linux</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/17/2.%20Less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Less学习笔记">
+                <i class="fa fa-chevron-left"></i> Less学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/3.%20React-Hooks/" rel="prev" title="React Hooks">
+                React Hooks <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/img/avatar_01.jpg"
+                alt="魏范光" />
+            
+              <p class="site-author-name" itemprop="name">魏范光</p>
+              <p class="site-description motion-element" itemprop="description">我心思慕你，如鹿思慕溪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Henery002" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5bf954006fb9a049ad76b694" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-juejin"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/henery_002" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zhihu.com" title="知乎" target="_blank">知乎</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+
+          {<!--
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height=110 src="//music.163.com/outchain/player?type=0&id=614742234&auto=1&height=90"></iframe>
+          -->}
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#大致过程："><span class="nav-number">1.</span> <span class="nav-text">大致过程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装-CentOS-7，配置-IP"><span class="nav-number">1.1.</span> <span class="nav-text">1. 安装 CentOS 7，配置 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装-nodejs、npm"><span class="nav-number">1.2.</span> <span class="nav-text">2. 安装 nodejs、npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装-Xshell-5、Xftp-5"><span class="nav-number">1.3.</span> <span class="nav-text">3. 安装 Xshell 5、Xftp 5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-……"><span class="nav-number">1.4.</span> <span class="nav-text">4. ……</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏范光</span>
+
+<!--
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">22.2k</span>
+  
+-->
+</div>
+
+
+
+
+
+
+
+
+
+<div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_pv">
+      本站访问用户:<span id="busuanzi_value_site_pv"></span>
+    </span>
+</div>
+
+<span class="post-meta-divider">|</span>
+<div class="powered-by">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+      本站访问总量:<span id="busuanzi_value_site_pv"></span>
+    </span>
+</div>
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全网字数统计：22.2k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
