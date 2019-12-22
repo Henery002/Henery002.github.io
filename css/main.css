@@ -1945,7 +1945,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #399e2f;
+  background: #c413ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3011,6 +3011,9 @@ pre .javascript .function {
 }
 .site-state-item {
   padding: 0 10px;
+}
+.links-of-author-item {
+  width: auto !important;
 }
 .links-of-author-item a:before {
   display: none;
