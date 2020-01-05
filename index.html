@@ -2533,6 +2533,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/03/19/2-2.%20%E4%BD%BF%E7%94%A8NPM-Webpack%E6%90%AD%E5%BB%BAReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/19/2-2.%20%E4%BD%BF%E7%94%A8NPM-Webpack%E6%90%AD%E5%BB%BAReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url">使用NPM/Webpack搭建React开发环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T10:55:34+08:00">
+                2018-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">工程搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  405
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>工具：node、npm、webpack<br>环境：linux<br>文件结构：<br>步骤：</p>
+<ol>
+<li><p><strong>[创建本地代码]</strong> 使用 <code>git clone [url]</code> 命令创建本地代码文件</p>
+</li>
+<li><p><strong>[npm项目初始化]</strong> 进入到代码根目录，运行 <code>npm init</code> ，生成 <code>package.json</code> 配置文件<br>【注】：package.json文件相关参数可默认不填写<br><img src="../images/npm-webpack/01.png" alt="图1"></p>
+</li>
+<li><p><strong>[项目依赖包安装]</strong> 使用 <code>npm install --save name1 name2</code> 或 <code>npm install name1 name2 --save</code> 命令安装其他必要组件。<br>如：react、react-dom、babel相关、……<br><code>npm install --save react react-dom babelify babel-preset-react</code><br><img src="../images/npm-webpack/02.png" alt="图2"></p>
+<p> 附带 –save 参数安装完成后，这些包信息会被添加进 package.json 中，包文件放于 node_modules 文件夹下<br><img src="../images/npm-webpack/03.png" alt="图3"></p>
+</li>
+<li><p>使用 webpack 打包</p>
+<ol>
+<li><p>配置 <code>webpack.config.js</code><br><img src="../images/npm-webpack/04.png" alt="图4"></p>
+</li>
+<li><p>安装 webpack （如以下包已安装过，也可重新安装，不受影响）<br><code>npm install -g webpack</code>         # 此处需要全局安装</p>
+</li>
+<li><p>安装 webpack-dev-server （webpack开发服务器）<br><code>npm install -g webpack-dev-server</code></p>
+</li>
+<li><p>还要在项目的目录下安装一遍<br><code>npm install webpack-dev-server --save</code><br><code>npm install webpack --save</code><br>安装完成后，可查看到 <code>webpack.config.js</code> 中已出现相关参数</p>
+</li>
+<li><p>使用 webpack 命令打包<br><code>webpack</code>          #回车，打包，将在指定目录中生成打包文件 bundle.js<br><code>node_modules/.bin/webpack</code>       #当 webpack 未全局安装时使用该命令</p>
+</li>
+</ol>
+</li>
+<li><p>……</p>
+</li>
+</ol>
+<p><strong>【注】：存在的问题：</strong><br>  在上述配置打包过程中，可能会出现安装 webpack 及其服务后 webpack 命令还是无法使用的问题。</p>
+<ol>
+<li><p>其中出现过的一个问题有：<br>1.1 <code>npm install -g webpack</code> 后出现警告：<br><img src="../images/npm-webpack/05.png" alt="图5"></p>
+<p>原因是：<br><img src="../images/npm-webpack/07.png" alt="图6"></p>
+<p>因为该问题，也就导致后续的几步安装都会提示警告，导致使用 webpack 命令打包时系统提示<br><img src="../images/npm-webpack/06.png" alt="图7">  ，<code>command not found</code>。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/02/28/2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3112,176 +3332,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2017/01/01/1.%20hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魏范光">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/img/avatar_01.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Henery 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/01/1.%20hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T10:00:00+08:00">
-                2017-01-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  73
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
 
 
           </div>
@@ -3329,7 +3386,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3351,7 +3408,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3424,7 +3481,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -3439,7 +3496,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.2k</span>
+    <span title="Site words total count">22.6k</span>
   
 -->
 </div>
@@ -3470,7 +3527,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全网字数统计：22.2k字</span>
+  <span class="post-count">全网字数统计：22.6k字</span>
 </div>
 
         
