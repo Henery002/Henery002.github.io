@@ -2533,6 +2533,701 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/08/16/2-3.%20%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BAand%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/16/2-3.%20%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BAand%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F%E7%82%B9/" itemprop="url">项目搭建/配置注意点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T10:00:00+08:00">
+                2018-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">工程搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  925
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Leopard"><a href="#Leopard" class="headerlink" title="Leopard"></a>Leopard</h2><p>【注意】：</p>
+<ol>
+<li>当前采用共享文件夹的方式开发，不需要开启相关服务。</li>
+<li>代码位于虚拟机下 <code>/mnt/hgfs/code/leopard</code> 位置，非 <code>/home/...</code></li>
+</ol>
+<hr>
+<h2 id="D-Vault"><a href="#D-Vault" class="headerlink" title="D-Vault"></a>D-Vault</h2><p><strong>项目搭建配置大致流程：</strong></p>
+<ol>
+<li><p>在Linux环境下拉取远程代码<br>在linux下进入到指定目录下，执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git lfs clone <span class="string">"http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git"</span></span></pre></td></tr></table></figure>
+<p>从代码线上拉取完整代码（存放在linux环境下）。</p>
+</li>
+<li><p>修改相关配置<br>使用 <code>vi package.json</code> 命令修改以下文件：</p>
+<ol>
+<li><p><code>./webui/package.json</code> 删除 <code>cross-env</code> 前缀【d-vault项目中必须项】</p>
+</li>
+<li><p><code>./webui/dist/api/config.ini.json</code> 配置Linux主机IP（即<code>192.168.3.24</code>）【d-vault项目中必须项】</p>
+</li>
+</ol>
+</li>
+<li><p>导入 <code>node_modules</code> 包（用于开启 npm 服务，必须项，否则无法开启服务）</p>
+</li>
+<li><p>开启 npm 服务<br>在Linux下进入 <code>node-modules</code> 所在目录，开启 npm 服务：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd /home/code/d-vault-webui/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">npm start</span></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器端打开 <code>&quot;http://192.168.3.24:8989/#/home&quot;</code></p>
+</li>
+</ol>
+<p>【注意】：</p>
+<ol>
+<li>进入到虚拟机 <code>/home/code/d-vault/webui</code> 下开启 npm 服务（必须项）<br>若 npm 服务未开启或开启失败，无法访问 <code>192.168.1.221:8989/#/home</code>。开启失败原因可能是 该目录下 <code>node_modules</code> 包的问题。<br>建议先备份该包再重新拷贝到原位置，再次尝试。</li>
+<li>手动修改以下配置文件：<ol>
+<li><code>../webui/package.json</code>                  删除蓝色内容</li>
+<li><code>../webui/dist/api/config.ini.json</code>      配置IP</li>
+<li><code>../webui/src/conf/Conf.js</code>              将IP改为自己的节点 <code>192.168.1.221</code> （貌似不是必须？？？）</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="demo项目-ant-design-pro："><a href="#demo项目-ant-design-pro：" class="headerlink" title="demo项目 - ant-design-pro："></a>demo项目 - ant-design-pro：</h2><p>【注意】：<br>Linux下：</p>
+<ol>
+<li><code>git clone “http://...ant-design-pro.git”</code>      #从github上拉取源码</li>
+<li><code>npm install</code>                                   #进入到项目目录下安装依赖包</li>
+<li><code>npm start</code>                                     #启动服务<br>【注】：若此时系统中已存在其他项目被启动的npm服务（即192.168.3.24:8000等端口已被占用），<br>则此时系统会询问并自动为当前项目分配一个端口号，用以在浏览器中打开该项目页面，如：</li>
+</ol>
+<hr>
+<h2 id="demo项目"><a href="#demo项目" class="headerlink" title="demo项目"></a>demo项目</h2><p>【注意】：<br>  需进入到项目根目录下开启 npm 服务</p>
+<hr>
+<h2 id="Dana"><a href="#Dana" class="headerlink" title="Dana"></a>Dana</h2><hr>
+<h2 id="signal-tunning（上海交警城市大脑项目）"><a href="#signal-tunning（上海交警城市大脑项目）" class="headerlink" title="signal-tunning（上海交警城市大脑项目）"></a>signal-tunning（上海交警城市大脑项目）</h2><p><strong>项目开发环境：</strong><br>  <code>node 8.9.3</code>、<code>windows</code>（<code>linux</code>下因暂时无法搭建VPN，所以无法开发）</p>
+<p><strong>项目环境搭建大致流程：</strong><br>  由于该项目属于中途接手，所以脚手架之类的环境都已搭好，需要做的就是开启前端服务跑通页面。</p>
+<ol>
+<li>使用<code>Cisco anyconnect（VPN）</code>连接阿里内网；<br>【注意】：VPN的链接需要关闭杀毒软件、防火墙。</li>
+<li><code>npm install</code> 之后，使用 <code>sh honeycomb_start.sh</code> 命令开启服务（也可在<code>package.json</code>中配置使用 npm start 开启服务）<br>【注意】：若 <code>honeycomb_start</code> 命令找不到，可重新安装：<br><code>npm install -g honeycomb-cli@0.2.12</code></li>
+<li>打包：<br><code>sh honeycomb_package.sh</code><br>【注意】：该项目打包之后，貌似会自动删掉一部分东西，所以打包之前慎重，做好备份（貌似assets里的node_modules包会被删掉？）</li>
+</ol>
+<hr>
+<h2 id="PandaBI"><a href="#PandaBI" class="headerlink" title="PandaBI"></a>PandaBI</h2><p><strong>项目开发环境及架构：</strong></p>
+<ol>
+<li><code>linux</code></li>
+<li><code>react</code> + <code>redux</code></li>
+</ol>
+<p><strong>项目开发模式环境搭建：</strong><br>  在clone下来代码线后，<br>     1. <code>npm install</code></p>
+<hr>
+<h2 id="demo项目-create-react-app"><a href="#demo项目-create-react-app" class="headerlink" title="demo项目 - create-react-app"></a>demo项目 - create-react-app</h2><p><strong>项目开发环境及架构：</strong></p>
+<ol>
+<li><code>macOs</code> /<code>iTerm2</code>(bash)</li>
+<li><code>react</code></li>
+</ol>
+<p><strong>项目开发环境搭建流程：</strong></p>
+<ol>
+<li><p><code>github: https://github.com/Henery002/create-react-app</code></p>
+</li>
+<li><p>在目标路径下创建项目工程文件：【注：npx创建项目只是其中一种方式】</p>
+<ol>
+<li><code>npx create-react-app my-app</code></li>
+<li><code>cd my-app</code></li>
+<li><code>npm start</code> / <code>yarn start</code><br>【注】：npx可以理解为npm指令的简化命令，此处可拉取远程Git仓库并在本地创建初始化工程文件<code>app/</code>。它会帮你创建一个 <code>app/</code> 文件夹，并初始化项目文件结构，安装<code>package.json</code>依赖包。无需配置，可以直接到 <code>/src</code> 下编写react代码。</li>
+</ol>
+<p>图示：</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/05/29/2-4.%20%E6%97%A5%E5%B8%B8%E7%BA%A0%E9%94%99%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/29/2-4.%20%E6%97%A5%E5%B8%B8%E7%BA%A0%E9%94%99%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="url">日常纠错报错记录（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T17:00:00+08:00">
+                2018-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97/" itemprop="url" rel="index">
+                    <span itemprop="name">错误日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="001-Xshell无法连接虚拟机"><a href="#001-Xshell无法连接虚拟机" class="headerlink" title="001 Xshell无法连接虚拟机"></a>001 Xshell无法连接虚拟机</h2><blockquote>
+<p>2017.12.26</p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong></p>
+<p><strong>无法正确连接虚拟机</strong><br>Linux的npm服务可用但网页打不开、Xshell无法连接虚拟机，linux无法ping主机（ <code>connect: network is unreachable</code>）</p>
+</li>
+<li><p><strong>存在问题：</strong><br><img src="../images/errlogs_01/1.png" alt="1"><br>尚不理解</p>
+</li>
+<li><p><strong>解决方法：</strong></p>
+<p>（由车春旭解决）<br>贴图：</p>
+</li>
+</ul>
+<hr>
+<h2 id="002-svg图标的使用方式"><a href="#002-svg图标的使用方式" class="headerlink" title="002 svg图标的使用方式"></a>002 svg图标的使用方式</h2><blockquote>
+<p>2017.12.11</p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>svg图标的使用方式</p>
+</li>
+<li><p><strong>使用方式：</strong><br>示例：开发者中心 回到顶部 按钮<br>[注意事项]：需要把<code>.svg</code>静态资源上传到<code>home/code/src/img/image/DevCenter/</code>下<br><img src="../images/errlogs_01/2.png" alt="2"></p>
+</li>
+</ul>
+<h2 id="003-为D-Vault开发者中心添加滚动条多次失败"><a href="#003-为D-Vault开发者中心添加滚动条多次失败" class="headerlink" title="003 为D-Vault开发者中心添加滚动条多次失败"></a>003 为D-Vault开发者中心添加滚动条多次失败</h2><blockquote>
+<p>2017.12.01</p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>为D-Vault开发者中心添加滚动条多次失败</p>
+</li>
+<li><p><strong>存在问题：</strong><br>d-valut中在通用css中设置了滚动条 <code>width=0</code>，所以所有页面默认不显示。开发者中心页面设置<code>width=10px</code>无效的原因是该页面布局采用了 <code>position:relative</code> 定位的方式，所以必须设置 <code>right:10px;</code> ，为滚动条留出空间。</p>
+</li>
+<li><p><strong>解决方式：</strong><br>为滚动条父元素设置 <code>right:10px;</code> ，再设置滚动条样式（关于滚动条样式设置，参见 <a href="http://blog.csdn.net/zh_rey/article/details/72473284" target="_blank" rel="noopener">http://blog.csdn.net/zh_rey/article/details/72473284</a> ）：<br><img src="../images/errlogs_01/3.png" alt="3"></p>
+</li>
+</ul>
+<h2 id="004-正则匹配文件后缀名"><a href="#004-正则匹配文件后缀名" class="headerlink" title="004 正则匹配文件后缀名"></a>004 正则匹配文件后缀名</h2><blockquote>
+<p>2017.11.27</p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>正则匹配文件后缀名</p>
+</li>
+<li><p><strong>解决方式：</strong><br><code>/\.js$/</code>                    – 以 .js 结尾<br><code>/\.(jps|png)$/</code>             – 以 .jpg 或 .png 结尾</p>
+</li>
+</ul>
+<h2 id="005-获取url中（或上传的文件）的文件名（去掉后缀名）"><a href="#005-获取url中（或上传的文件）的文件名（去掉后缀名）" class="headerlink" title="005 获取url中（或上传的文件）的文件名（去掉后缀名）"></a>005 获取url中（或上传的文件）的文件名（去掉后缀名）</h2><blockquote>
+<p>2017.11.20 16:00</p>
+</blockquote>
+<ul>
+<li><strong>问题描述：</strong><br>获取url中（或上传的文件）的文件名（去掉后缀名）</li>
+<li><strong>存在问题：</strong><br>文件的后缀名种类繁多，此处用正则表达式（<code>/\.(jpg|png|gif|...)/</code>）去匹配不合适，可直接使用<code>lastIndexOf(&#39;.&#39;)</code>等API。</li>
+<li><strong>解决方式：</strong><ol>
+<li><code>split(&#39;/&#39;);</code>                                //将url分隔成数组，取最后一个元素；</li>
+<li><code>arr.slice(0, array.lastIndexOf(&#39;.&#39;));</code>      //查找最后一个.，截取其前所有字符并返回。<br><img src="../images/errlogs_01/5.png" alt="5"></li>
+</ol>
+</li>
+</ul>
+<h2 id="006-通过git命令只拉取指定文件夹下的内容"><a href="#006-通过git命令只拉取指定文件夹下的内容" class="headerlink" title="006 通过git命令只拉取指定文件夹下的内容"></a>006 通过git命令只拉取指定文件夹下的内容</h2><blockquote>
+<p>2017.11.15 16:50</p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>在拉取git远程仓库的代码时，可以通过git命令只拉取指定文件夹下的内容</p>
+</li>
+<li><p><strong>存在问题：</strong><br>如果只拉取git上某仓库的指定文件夹，如 leopard/engine/webui/dana/leopard，可以通过相关命令实现，但存在的问题是 无法在该目录下切换分支，它会默认使用master分支。所以，该思路不可行。</p>
+<p>命令：</p>
+<ol>
+<li><code>git init</code></li>
+<li><code>git remote add -f origin &quot;http://211.144.114.26:5081/trunk/leopard.git&quot;</code></li>
+<li><code>git config core.sparsecheckout true</code></li>
+<li><code>echo &quot;engine/webui/dana/leopard&quot; &gt;&gt; .git/info/sparse-checkout</code></li>
+<li><code>git pull origin master</code></li>
+</ol>
+<p>参考文章：<a href="http://blog.csdn.net/linlzk/article/details/49019787" target="_blank" rel="noopener">http://blog.csdn.net/linlzk/article/details/49019787</a></p>
+</li>
+</ul>
+<h2 id="007-无法打开页面问题"><a href="#007-无法打开页面问题" class="headerlink" title="007 无法打开页面问题"></a>007 无法打开页面问题</h2><blockquote>
+<p>2017.11.15 14:39    <strong>无法打开页面问题</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>E盘下共享文件夹<code>code/leopard</code>无法同步到linux开发环境下（<code>/home/...</code>），并且<code>192.168.1.221</code>节点无法打开页面（报<code>502 bad gateway</code>）</p>
+</li>
+<li><p><strong>错误原因：</strong></p>
+<ol>
+<li>在设置了共享文件夹（<code>e/code/leopard</code>）的方式之后，开发环境的代码包不再位于linux下的 <code>/home/</code> 中，而是位于 /<code>mnt/hgfs/code/leopard</code> 下。切记！<br>所以并非无法实现同步，而是之前认为的位置是错误的。</li>
+<li>502的错误：apache服务未打开。</li>
+</ol>
+</li>
+<li><p><strong>解决方式：</strong><br>该502错误不同于昨天遇到的502：昨天报502是因为在文件上传提交ajax时，发送了错误的地址（默认发送了本地host，即<code>window.location.host</code>，而是应该在测试的时候，发送<code>192.168.1.20</code>的地址，在提交代码的时候，再改回<code>window.location.host</code>）。<br><img src="../images/errlogs_01/7_1.png" alt="7-1"></p>
+<p>打开apache服务：（至于apache服务为什么被关闭了，i d’ont know.）<br><img src="../images/errlogs_01/7_2.png" alt="7-2"><br><img src="../images/errlogs_01/7_3.png" alt="7-3"></p>
+</li>
+</ul>
+<h2 id="008-开启npm服务失败问题"><a href="#008-开启npm服务失败问题" class="headerlink" title="008 开启npm服务失败问题"></a>008 开启npm服务失败问题</h2><blockquote>
+<p>2018.01.11 12:20    <strong>开启npm服务失败问题</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>d-vault项目在虚拟机 <code>/home/code/d-vault/webui</code> 目录下开启npm服务失败</p>
+</li>
+<li><p><strong>错误原因：</strong><br>目测很可能是因为该目录下 <code>node_modules</code> 包的问题<br><img src="../images/errlogs_01/8_1.png" alt="8"></p>
+</li>
+<li><p><strong>解决方式：</strong><br>可以尝试将项目备份，然后重新将 <code>node_modules</code> 包拷贝一份替换</p>
+</li>
+</ul>
+<h2 id="008-1-git-push推送失败问题"><a href="#008-1-git-push推送失败问题" class="headerlink" title="008-1 git push推送失败问题"></a>008-1 git push推送失败问题</h2><blockquote>
+<p>2018.01.29 14:10    <strong>git push推送失败问题</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br><code>git push</code> 提交代码时，因 add 了新图片文件导致文件过大，无法推送。<br><img src="../images/errlogs_01/8_1_1.png" alt="8-1"></p>
+</li>
+<li><p><strong>错误原因：</strong><br>（推测是新增文件无法连接到上海远程服务器）</p>
+</li>
+<li><p><strong>解决方式：</strong><br>方式一：使用 <code>git lfs push</code> 推送，无效；<br>方式二：在重新执行 <code>git push</code> 之前，先执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@localhost webui]# iptables -t nat -A OUTPUT -d 192.168.50.4 -j DNAT --to-destination 211.144.114.26</span></pre></td></tr></table></figure>
+<p>  再执行 <code>git push</code> ，成功。<br>  <img src="../images/errlogs_01/8_1_2.png" alt="8-2"></p>
+</li>
+</ul>
+<h2 id="009-使用git-push命令时需反复输入用户名的问题"><a href="#009-使用git-push命令时需反复输入用户名的问题" class="headerlink" title="009 使用git push命令时需反复输入用户名的问题"></a>009 使用git push命令时需反复输入用户名的问题</h2><blockquote>
+<p>2018.01.29 14:22    <strong>使用git push命令时需反复输入用户名的问题</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>使用 <code>git pull</code> 或 <code>git push</code> 命令时每次都需要输入冗长的用户名和密码</p>
+</li>
+<li><p><strong>错误原因：</strong><br>在 <code>git clone &quot;...&quot;</code> 拉取代码库的时候，未将用户名和密码一起设置进去</p>
+</li>
+<li><p><strong>解决方式：</strong><br>使用 <code>git clone</code> 命令重新拉取代码库时将用户名和密码一起设置进去<br>=&gt; <code>git clone http://username:password@giturl/xxx.git</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@localhost webui]# git lfs clone "http://wei.fanguang:datatom.com@211.144.114.26:5081/trunk/d-vault.git"</span></pre></td></tr></table></figure>
+<p><img src="../images/errlogs_01/9_1.png" alt="9"></p>
+</li>
+</ul>
+<h2 id="010-拉取源代码时图片未成功下载，导致本地图片无法打开，页面图片不显示"><a href="#010-拉取源代码时图片未成功下载，导致本地图片无法打开，页面图片不显示" class="headerlink" title="010 拉取源代码时图片未成功下载，导致本地图片无法打开，页面图片不显示"></a>010 拉取源代码时图片未成功下载，导致本地图片无法打开，页面图片不显示</h2><blockquote>
+<p>2018.02.01 15:00 <strong>拉取源代码时图片未成功下载，导致本地图片无法打开，页面图片不显示</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br><code>git clone</code>在拉取源代码时未能成功将图片大文件<code>pull</code>下来，于是跳过该过程，导致本地（<code>linux</code>下）图片无法正常显示</p>
+</li>
+<li><p><strong>错误原因：</strong><br><code>lfs</code>问题。…</p>
+</li>
+<li><p><strong>解决方式：</strong><br>[<strong>法一</strong>]踩过两次雷区的一种方法：<br>先删除本地（<code>linux</code>下）图片文件，再重新<code>download</code>远程文件。</p>
+<ol>
+<li>使用 <code>rm -rf books</code> 命令删除<code>books</code>目录及其目录下所有图片；</li>
+<li>使用 <code>git checkout -- books</code> 撤销删除操作，即重新下载已被删除的文件。但此处由于 <code>lfs</code> 的问题导致无法正常<code>download</code>。需要先执行 <code>iptables</code> 命令：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">iptables -t nat -A OUTPUT -d 192.168.50.4 -j DNAT --to-destination 211.144.114.26 #后改为 192.168.50.2 、211.144.114.26:5088</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">（iptables -t nat -F  &amp;&amp; iptables -t nat -A OUTPUT -p tcp -d <span class="number">192.168</span><span class="number">.50</span><span class="number">.2</span> --dport <span class="number">80</span> -j DNAT --to <span class="number">211.144</span><span class="number">.114</span><span class="number">.26</span>:<span class="number">5088</span> ）  -- 张忠宝荐</span></pre></td></tr></table></figure>
+再接着执行 <code>git checkout -- books</code> 命令，便可成功重新下载被删除文件。<br><img src="../images/errlogs_01/10_1.png" alt="10-1"></li>
+</ol>
+<p>[<strong>法二</strong>]（法一后来发现不再生效）：<br>进入到图片所在文件夹下，删除所有图片，再重新 <code>checkout</code> 撤回删除，便重新下载。</p>
+<ol>
+<li><code>cd img/images/DevCenter/Books</code></li>
+<li><code>ll</code>    #列出所有图片，或 <code>ls -l</code></li>
+<li><code>rm -rf *</code>    #删除所有图片</li>
+<li><code>git checkout -- *</code>    #撤回删除，重新下载<br><img src="../images/errlogs_01/10_2.png" alt="10-2"></li>
+</ol>
+<p>[<strong>法三</strong>]（同法二）：<br>可在根目录下执行，也可在指定目录下执行操作：</p>
+<ol>
+<li>删除所有指定类型的文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"*.png"</span> -type f -print -exec rm -rf &#123;&#125; \;</span></pre></td></tr></table></figure>
+<img src="../images/errlogs_01/10_3.png" alt="10-3"></li>
+<li>重新下载（即撤回删除操作）。若下载缓慢，可终止插入执行 <code>iptables</code> …… 命令再重新 <code>checkout</code><br><code>git checkout &quot;*.png&quot;</code>    或    <code>git checkout -- &quot;*.png&quot;</code><br><img src="../images/errlogs_01/10_4.png" alt="10-4"></li>
+</ol>
+</li>
+</ul>
+<h2 id="011-多分支提交时失败报错的问题"><a href="#011-多分支提交时失败报错的问题" class="headerlink" title="011 多分支提交时失败报错的问题"></a>011 多分支提交时失败报错的问题</h2><blockquote>
+<p>2018.02.09 10:50    <strong>多分支提交时失败报错的问题</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>使用 <code>git cherry-pick</code> 指令进行多分支提交时报错失败，无法在当前分支提交另一分支已经提交的代码<br>具体过程如下：</p>
+<ol>
+<li>在 <code>master</code> 分支正常提交一次记录</li>
+<li>切换到 <code>v3.5.2</code> 分支上（先<code>pull</code>代码），使用 <code>cherry-pick e7a58f2b</code> 在 <code>v3.5.2</code> 上提交 <code>master</code> 上的刚才的记录</li>
+<li>在 <code>v3.5.2</code> 上 <code>git push</code> 推送代码，发现报错，推送失败。<br><img src="../images/errlogs_01/11_1.png" alt="11-2"></li>
+</ol>
+</li>
+<li><p><strong>错误原因：</strong><br>尚不清晰，可能是冲突的原因</p>
+</li>
+<li><p><strong>解决方式：</strong><br>尚未整理出完整可行的方式，可尝试以下方法：<br><img src="../images/errlogs_01/11_2.png" alt="11-2"></p>
+</li>
+</ul>
+<h2 id="012-git-pull拉取代码时提示有错误（-git-ORIG-HEAD文件问题）"><a href="#012-git-pull拉取代码时提示有错误（-git-ORIG-HEAD文件问题）" class="headerlink" title="012 git pull拉取代码时提示有错误（.git/ORIG_HEAD文件问题）"></a>012 git pull拉取代码时提示有错误（<code>.git/ORIG_HEAD</code>文件问题）</h2><blockquote>
+<p>2018.03.06 11:11    <strong>git pull拉取代码时提示有错误（<code>.git/ORIG_HEAD</code>文件问题）</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>在 <code>git pull</code> 拉取代码时提示错误，导致无法正常拉取。<br><img src="../images/errlogs_01/12_1.png" alt="12-1"></p>
+</li>
+<li><p><strong>错误原因：</strong><br>参考：<a href="https://stackoverflow.com/questions/10570319/cannot-pull-git-cannot-resolve-reference-orig-head" target="_blank" rel="noopener">https://stackoverflow.com/questions/10570319/cannot-pull-git-cannot-resolve-reference-orig-head</a><br><img src="../images/errlogs_01/12_2.png" alt="12-2"></p>
+</li>
+<li><p><strong>解决方式：</strong><br>在项目目录中找到 <code>ORIG_HEAD</code> 文件，删除</p>
+<ol>
+<li><code># find / -name ORIG_HEAD</code><br><code>/home/code/d-vault/.git/ORIG_HEAD</code></li>
+<li><code># rm -rf ORIG_HEAD</code></li>
+<li><code># git pull</code>         # 重新拉取，成功</li>
+</ol>
+</li>
+</ul>
+<h2 id="013-linux下npm-start启动成功，但无法打开网页"><a href="#013-linux下npm-start启动成功，但无法打开网页" class="headerlink" title="013 linux下npm start启动成功，但无法打开网页"></a>013 linux下npm start启动成功，但无法打开网页</h2><blockquote>
+<p>2018.03.21 12:00    <strong>linux下npm start启动成功，但无法打开网页</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>在 <code>d-vault</code> / <code>Dana4.0</code> 项目中开启npm 服务（<code>npm start</code>）成功后，无法正常打开网页<br>（<code>linux</code>在前几天重新创建过虚拟机，可能是相关配置未配置好？）<br><img src="../images/errlogs_01/13_1.png" alt="13-1"></p>
+</li>
+<li><p><strong>错误原因：</strong><br>未关闭防火墙（车春旭解决认为）</p>
+</li>
+<li><p><strong>解决方式：</strong><br>关闭防火墙：<br><code># systemctl stop firewalld</code><br><code># systemctl disable firewalld</code><br><img src="../images/errlogs_01/13_2.png" alt="13-2"></p>
+</li>
+</ul>
+<h2 id="014-Dana4-0中无法通过js操作iframe中的元素"><a href="#014-Dana4-0中无法通过js操作iframe中的元素" class="headerlink" title="014 Dana4.0中无法通过js操作iframe中的元素"></a>014 Dana4.0中无法通过js操作iframe中的元素</h2><blockquote>
+<p>2018.05.02 17:00    <strong>Dana4.0中无法通过js操作iframe中的元素</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>解决方案模块中企图通过js获取<code>iframe</code>页面中的<code>dom</code>元素以更改其样式，多方尝试后失败</p>
+</li>
+<li><p><strong>错误原因：</strong><br>因此处<code>iframe</code>使用了其他链接的页面，所以这里存在跨域问题，导致暂无法跨域操作<code>dom</code><br><img src="../images/errlogs_01/14_1.png" alt="14-1"><br><img src="../images/errlogs_01/14_2.png" alt="14-2"></p>
+</li>
+<li><p><strong>解决方式：</strong><br>无。暂放弃此需求。<br>参考文章：知乎：js怎么跨域获取iframe中的内容？<a href="https://www.zhihu.com/question/37185579" target="_blank" rel="noopener">https://www.zhihu.com/question/37185579</a></p>
+</li>
+</ul>
+<h2 id="015-Dana4-0在beta2分支中git-pull报错无法进行"><a href="#015-Dana4-0在beta2分支中git-pull报错无法进行" class="headerlink" title="015 Dana4.0在beta2分支中git pull报错无法进行"></a>015 Dana4.0在beta2分支中git pull报错无法进行</h2><blockquote>
+<p>2018.05.15 12:00    <strong>Dana4.0在beta2分支中git pull报错无法进行</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>问题描述：</strong><br>dana在本地创建了新分支beta2并推送到远程之后，再次在beta2分支上<code>git pull</code>时出现问题，无法继续<code>pull</code><br><img src="../images/errlogs_01/15_1.png" alt="15-1"></p>
+</li>
+<li><p><strong>错误原因：</strong><br>暂未知</p>
+</li>
+<li><p><strong>解决方式：</strong><br>执行上图红色部分命令，为<code>beta2</code> 分支创建跟踪信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ git branch --<span class="keyword">set</span>-upstream-to=origin/beta2 beta2</span></pre></td></tr></table></figure>
+<p><img src="../images/errlogs_01/15_2.png" alt="15-2"><br>重新 <code>git pull</code> ，成功。</p>
+</li>
+</ul>
+<h2 id="016-Dana4-0-beta2中模拟页面长时间无操作后用户登出功能"><a href="#016-Dana4-0-beta2中模拟页面长时间无操作后用户登出功能" class="headerlink" title="016 Dana4.0 beta2中模拟页面长时间无操作后用户登出功能"></a>016 Dana4.0 beta2中模拟页面长时间无操作后用户登出功能</h2><blockquote>
+<p>2018.05.29 17:00    <strong>Dana4.0 beta2中模拟页面长时间无操作后用户登出功能</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>解决方式：</strong><br><strong><em>思路一：</em></strong></p>
+<ol>
+<li>登陆成功时将当前时间 <code>currentTime</code> 存储到 <code>localStorage</code> ；</li>
+<li>页面在 <code>componentDidMount</code> 中（即刷新）时，重新获取当前时间 <code>currentTime</code> ，与 <code>localStorage</code> 中的 <code>loginTime</code> 作比较，超出 <code>duration</code> 则登出。<br>缺点：效果被写死，无法实现用户无操作才能登出，只能实现网页每隔 <code>duration</code> 后强制登出。否决！<br><img src="../images/errlogs_01/16_1.png" alt="16-1"></li>
+</ol>
+<p><strong><em>思路二：</em></strong></p>
+<ol>
+<li>记录鼠标最后一次操作 <code>mousemove</code> 时的时间 <code>lastMove；</code></li>
+<li>每隔5秒检查当前时间 <code>currentTime</code> 与 <code>lastMove</code> 的差值，超出 <code>duration</code> 则登出；</li>
+<li>若新页面暂无鼠标操作，则 <code>lastMove</code> 默认取当前时间。<br>备注：这种方式可以解决思路一存在的问题，实现页面长时间无操作后用户登出功能。但是由于频繁的检查操作，可能会降低性能。暂可用。<br><img src="../images/errlogs_01/16_2.png" alt="16-2"></li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/03/19/2-2.%20%E4%BD%BF%E7%94%A8NPM-Webpack%E6%90%AD%E5%BB%BAReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2740,598 +3435,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/02/28/2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魏范光">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/img/avatar_01.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Henery 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/28/2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url">在本地计算机搭建Linux开发环境</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T16:39:00+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
-                    <span itemprop="name">原创</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index">
-                    <span itemprop="name">工程搭建</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>2018/02/28 16:39 在自己的计算机（主机名：myCent）上配置 Linux、xshell、xftp 成功：<br>虚拟机名：Henery CentOS<br>用 户 名：root<br>密 码：datatom</p>
-</blockquote>
-<h3 id="大致过程："><a href="#大致过程：" class="headerlink" title="大致过程："></a>大致过程：</h3><h4 id="1-安装-CentOS-7，配置-IP"><a href="#1-安装-CentOS-7，配置-IP" class="headerlink" title="1. 安装 CentOS 7，配置 IP"></a>1. 安装 CentOS 7，配置 IP</h4><blockquote>
-<p>[注]：安装第一步中选择“自定义”安装。</p>
-</blockquote>
-<ol>
-<li><p>在安装完 CentOS 后，创建虚拟机时，必须将虚拟机参数：网络适配器-网络连接设置为 <font color="red">桥接模式</font>（不是 NAT 模式），否则在后续使用 xshell 时无法连接到虚拟主机。<br><img src="../images/linux-environment/01.png" alt="1"></p>
-</li>
-<li><p>配置虚拟机 IP，然后重启网络<br><font color="red">vi /etc/sysconfig/network-scripts/ifcfg-ens33</font><br><img src="../images/linux-environment/02.png" alt="2">（该内容在 02-2 中有记录，在自己的计算机上配置的 IP 为 192.168.1.221）<br><font color="red">service network restart</font><br>查看 linux IP 是否设置成功：<br><font color="red">ip addr</font><br><img src="../images/linux-environment/03.png" alt="3"></p>
-</li>
-</ol>
-<h4 id="2-安装-nodejs、npm"><a href="#2-安装-nodejs、npm" class="headerlink" title="2. 安装 nodejs、npm"></a>2. 安装 nodejs、npm</h4><ol>
-<li><p>官网下载 nodejs 对应版本压缩包（此处下载到 v8.9.3 版本，<font color="red">后来(第 3 步中)证明 v8.9 的版本过高，存在问题，此处建议直接安装 v7.9.0 版本）</font>，可使用 xftp 上传到 linux 服务器（可放在 /tmp 目录下）<br><img src="../images/linux-environment/04.png" alt="4"></p>
-</li>
-<li><p>使用 <font color="red">tar -xvf node-v8.9.3-linux-x64.tar.xz</font> 命令在当前文件夹 /tmp 解压 <font color="red">（后来发现 /tmp 文件夹下的文件存在关机后消失问题，所以可以更换保存路径于 /opt 下）</font><br><img src="../images/linux-environment/05.png" alt="5"></p>
-</li>
-<li><p>通过建立<strong>软连接</strong>，将 node、npm 变为全局命令。参考文章：<a href="https://www.cnblogs.com/liuqi/p/6483317.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuqi/p/6483317.html</a><br><img src="../images/linux-environment/06.png" alt="6"></p>
-<p>查看，安装成功：<br><img src="../images/linux-environment/07.png" alt="7"><br><strong>后来重装 node 后，更改了安装位置：</strong></p>
-<p><img src="../images/linux-environment/08.png" alt="8"><br>【注】：</p>
-<ol>
-<li><p>在安装 node、npm 时，当执行 node -v 或 npm -v 命令，<font color="red">系统提示权限不够时</font>，可使用以下方法解决：<br>进入到 node 或 npm 所在路径下，执行 chmod a+x npm 或 chmod a+x node 为文件设定可访问权限。具体可百度。</p>
-</li>
-<li><p>软连接配置成功后可到 <font color="red">.usr/local/bin</font> 下查看：<br><img src="../images/linux-environment/09.png" alt="9"></p>
-</li>
-<li><p>上述安装了 node 的高版本，再使用时会带来一些意外报错问题，建议将 nodejs 降级（v7 版本）。<br>如：在 d-vault 项目中启动服务（npm start）时，报错（Node-Sass 不支持问题）导致无法开启项目：<br><img src="../images/linux-environment/10.png" alt="10"></p>
-<p>由于上述方法采用 通过解压 node.tar 包、设置软连接 的方式安装 node，所以要将 <font color="red">node 重装到 v7 版本</font>时，只需要：</p>
-<ol>
-<li>删除原 node.tar 包 解压出来的文件夹</li>
-<li>删除原设置的软连接<br>cd /usr/local/bin<br>rm -rf node<br>rm -rf npm</li>
-<li>重新下载所需版本 node.tar 包，解压</li>
-<li>重新设置软连接<br><font color="red">ln -s /tmp/node-v7.9.0-linux-x64/bin/npm /usr/local/bin</font><br><font color="red">ln -s /tmp/node-v7.9.0-linux-x64/bin/node /usr/local/bin</font></li>
-<li>检查是否安装成功<br>node -v<br>npm -v</li>
-</ol>
-<p>由于上述重装了 node，所以需要重装一下 node-sass ，然后再次运行 npm start ：<br><font color="red">npm install node-sass</font><br><img src="../images/linux-environment/11.png" alt="11"><br><img src="../images/linux-environment/12.png" alt="12"><br>尽管依然有报错，但未影响服务开启。</p>
-<p>【注】：安装 nodejs，还有其他方式，上述只是其中一种。</p>
-</li>
-<li><p>安装 git，拉取代码库<br>若 CentOS 系统未自带 git 版本，可使用 yum 命令安装 git ，但是版本较低。后续可重装高版本 git。<br>参考文章：<a href="http://blog.csdn.net/lianxiaopang/article/details/78501569" target="_blank" rel="noopener">CentOS 安装升级高版本 git</a>，以下为该文章解决方式。</p>
-<ol>
-<li><p>yum install git #安装过程较冗长，慢慢等待。此命令安装了 git v1 版本较低<br>【注】：在运行 yum 命令时，系统可能会报错：Could not retrieve mirrorlist <a href="http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os" target="_blank" rel="noopener">http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os</a> error was14:……<br>解决方法：配置 /etc/resolv.conf 文件。参考文章：<a href="http://blog.csdn.net/a791123503/article/details/77823498" target="_blank" rel="noopener">http://blog.csdn.net/a791123503/article/details/77823498</a><br>vi /etc/resolv.conf<br>键入：nameserver 8.8.8.8<br>search localdomain #后保存退出<br><img src="../images/linux-environment/13.png" alt="13"><br>可成功解决 yum 命令上述异常执行的问题</p>
-</li>
-<li><p>yum remove git #先卸载低版本 git</p>
-</li>
-<li><p>yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel gcc perl-ExtUtils-MakeMaker package #安装依赖包<br> 【注】：在同事电脑上首次安装 linux、在 linux 在安装 git、安装 git 依赖包时，执行该命令不久后安装进程停滞：<br> <img src="../images/linux-environment/14.jpg" alt="14"><br> 电脑蓝屏<br> 【解决】是否能解决待验证：百度 <a href="https://blog.csdn.net/dmt742055597/article/details/78580008?locationNum=10&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/dmt742055597/article/details/78580008?locationNum=10&amp;fps=1</a><br> 错误原因：未安装 deltarpm<br> 依次执行：<br> yum provides ‘*/applydeltarpm’<br> yum install deltarpm<br> 然后再重新继续执行依赖包安装</p>
-</li>
-<li><p>下载高版本 git ( <a href="https://www.kernel.org/pub/software/scm/git/git-2.13.2.tar.gz)，使用命令" target="_blank" rel="noopener">https://www.kernel.org/pub/software/scm/git/git-2.13.2.tar.gz)，使用命令</a> tar -xvf name 解压放于 linux 服务器 /usr/src 下</p>
-</li>
-<li><p>cd git-2.13.2<br>./configure –prefix=/usr/local/git all<br>make &amp;&amp; make install</p>
-</li>
-<li><p>将 git 加入环境变量<br>echo “export PATH=$PATH:/usr/local/git/bin” &gt;&gt; /etc/bashrc<br>source /etc/bashrc</p>
-</li>
-<li><p>验证 git 是否安装成功<br>git –version #非 git -v<br><img src="../images/linux-environment/15.png" alt="15"></p>
-</li>
-<li><p>安装 git lfs（暂略）</p>
-</li>
-<li><p>拉取代码库<br>git clone “<a href="http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git&quot;" target="_blank" rel="noopener">http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git&quot;</a><br>此处报错：fatal: Unable to find remote helper for ‘http’<br><img src="../images/linux-environment/16.png" alt="16"></p>
-<p><strong><em>法一：</em></strong><br>查阅资料发现可能是由于 git 版本缺少 curl 和 expat 组件的支持，通过以下方式解决：（参考文章：）<br><a href="https://stackoverflow.com/questions/4569089/cant-update-rvm-fatal-unable-to-find-remote-helper-for-http" target="_blank" rel="noopener">https://stackoverflow.com/questions/4569089/cant-update-rvm-fatal-unable-to-find-remote-helper-for-http</a></p>
-<ol>
-<li>下载 git 的 tar 包，解压于 /usr/src 下</li>
-<li>cd git-2.13.2</li>
-<li>./configure –with-curl –with-expat</li>
-<li>make</li>
-<li>sudo make install<br>重新执行 git clone，成功拉取。</li>
-</ol>
-<p><strong><em>法二：</em></strong><br>后来发现法一已经不再生效，所以查找到法二。<br>原因为 curl-devel 未安装<br>参考文章：<a href="https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone" target="_blank" rel="noopener">https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone</a><br><img src="../images/linux-environment/17.png" alt="17"></p>
-<ol>
-<li>yum install curl-devel</li>
-<li>#cd to anywhere the source for git is</li>
-<li>cd /usr/src/git-2.13.2 #linux 下 git 的安装位置</li>
-<li>./configure</li>
-<li>make</li>
-<li>make install<br>重新执行 git clone ，成功。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h4 id="3-安装-Xshell-5、Xftp-5"><a href="#3-安装-Xshell-5、Xftp-5" class="headerlink" title="3. 安装 Xshell 5、Xftp 5"></a>3. 安装 Xshell 5、Xftp 5</h4><p>使用虚拟主机 ip 连接到虚拟主机，键入 用户名和密码 连接。<br><img src="../images/linux-environment/18.png" alt="18"></p>
-<h4 id="4-……"><a href="#4-……" class="headerlink" title="4. ……"></a>4. ……</h4>
-          
-        
-      
-    </div>
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2017/12/17/2.%20Less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魏范光">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/img/avatar_01.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Henery 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/17/2.%20Less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url">Less学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-17T15:47:25+08:00">
-                2017-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
-                    <span itemprop="name">原创</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index">
-                    <span itemprop="name">技术栈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  12
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>css 的语法相对简单，对使用者的要求较低，但同时也带来一些问题：css 是一门非程序式语言，没有变量、函数、scope（作用域）等概念，因此需要书写大量看似没有逻辑的代码，不方便维护及扩展，不利于复用，很难写出组织良好且易于维护的 css 代码。</p>
-<p>less 在 css 的语法基础之上，引入了变量、Mixin、运算以及函数等功能，大大简化了 css 的编写，并且降低了 css 的维护成本。</p>
-<h3 id="less-原理及使用方式背景"><a href="#less-原理及使用方式背景" class="headerlink" title="less 原理及使用方式背景"></a>less 原理及使用方式背景</h3><p>本质上，less 包含一套自定义的语法及一个解析器，用户根据这些语法定义自己的样式规则，这些规则最终会通过解析器，编译生成对应的 css 文件。less 并没有裁剪 css 原有的特性，更不是用来取代 css 的，而是在现有 css 语法的基础上，为其加入程序式语言的特性。下面是一个简单的例子：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@color: #4D926F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: @color;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: @color;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="number">#4d926f</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="number">#4d926f</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>less 可以直接在客户端使用，也可以在服务器端使用。在实际项目开发中，推荐使用第三种方式，即将 less 文件编译生成静态 css 文件，并在 html 文档中应用。</p>
-<ul>
-<li><h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4>从 <a href="http://lesscss.org下载" target="_blank" rel="noopener">http://lesscss.org下载</a> less.js 源文件后就开展以直接在客户端使用，然后在 html 中引入 less 源文件：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet/less"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"styles.less"</span> /&gt;</span></span></pre></td></tr></table></figure>
-
-<p>less 源文件的引入方式与标准同 css。</p>
-<p>需要注意的是，在引入 .less 文件时，rel 属性要设置为“stylesheet/less”且 less 源文件一定要在 less.js 引入之前引入，这样才能保证 less 源文件正确编译解析。</p>
-<ul>
-<li><h4 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h4>less 在服务器端的使用借助于 less 编译器，将 less 源文件编译生成最终的 css 文件。可以使用 node 包管理器 npm 安装 less，安装成功后就可以在 node 环境中对 less 源文件进行编译。</li>
-</ul>
-<p>在项目开发初期，无论采用客户端或服务器端用法，都要想办法将用到的 css 或 less 文件引入到 html 页面或桥接文件中，less 中使用 <a href="http://lesscss.cn/features/#features-overview-feature-importing" target="_blank" rel="noopener">Importing</a>。可以通过 @import 引入需要的 .less 或 .css 文件。 如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> “variables.less”;</span></pre></td></tr></table></figure>
-
-<p>.less 文件也可以省略后缀名，像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> “variables”;</span></pre></td></tr></table></figure>
-
-<p>引入 css 同 less 文件一样，只是 .css 后缀名不能省略。</p>
-<ul>
-<li><h4 id="使用编译生成的静态-css-文件"><a href="#使用编译生成的静态-css-文件" class="headerlink" title="使用编译生成的静态 css 文件"></a>使用编译生成的静态 css 文件</h4>通过 less 编译器，将 less 文件编译成为 css 文件，在 html 文章中引入使用。这里要强调的一点，less 完全兼容 css 语法，也就是说可以将标准的 css 文件直接改成 .less 格式，less 编译器可以完全识别。</li>
-</ul>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ol>
-<li><h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a><a href="http://lesscss.cn/features/#variables-feature" target="_blank" rel="noopener">Variables</a></h4></li>
-</ol>
-<p>less 允许开发者自定义变量，变量可以在全局样式中使用，变量使得样式修改更简便。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@border-color:</span> <span class="number">#b5bcc7</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mythemes</span> <span class="selector-tag">tableBorder</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="variable">@border-color</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mythemes</span> <span class="selector-tag">tableBorder</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#b5bcc7</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>从上述代码中可以看出，变量是 value（值）级别的复用，可以将相同的值定义成变量统一管理。</p>
-<p>该特性适用于定义主题，如将背景颜色、字体颜色、边框属性等常规样式进行统一定义，这样不同的主题只需要定义不同的变量文件即可。该特性也同样适用于 CSS RESET（重置样式表），在 web 开发中，有时需要屏蔽浏览器默认的样式行为而需要重新定义样式表来覆盖浏览器的默认行为，使用 less 的变量特性就可以在不同的项目间重用样式表，仅需要在不同的项目样式表中根据需求重新给变量赋值即可。</p>
-<p>less 中的变量和其他编程语言一样，可以实现值的复用，同样它也有作用域 <a href="http://lesscss.cn/features/#features-overview-feature-scope" target="_blank" rel="noopener">Scope</a>，即局部变量 or 全局变量的概念，查找变量的顺序是先在局部定义中找，如果找不到，则查找上级定义，直至全局。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@width:</span> <span class="number">20px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#homeDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="variable">@width:</span> <span class="number">30px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#centerDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="variable">@width</span>; <span class="comment">// 此处应该取最近定义的变量 width 的值 30px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#leftDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="variable">@width</span>; <span class="comment">// 此处应该取最上面定义的变量 width 的值 20px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#homeDiv</span> <span class="selector-id">#centerDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">30px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#leftDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><h4 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a><a href="http://lesscss.cn/features/#mixins-feature" target="_blank" rel="noopener">Mixins</a></h4></li>
-</ol>
-<p>同 Sass 一样，很多动态语言都支持 mixins 特性，它是多重继承的一种实现。在 less 中，mixins 是指在一个 class 中引入另外一个已经定义的 class，就像在当前 class 中增加一个属性一样。</p>
-<p>mixins 在 less 中的使用：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.roundedCorners</span>(<span class="variable">@radius</span>:<span class="number">5px</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在另外的样式选择器中使用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.roundedCorners</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#footer</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.roundedCorners</span>(<span class="number">10px</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#footer</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>从上面的代码我们可以看出：mixins 其实是一种嵌套，它允许将一个类嵌入到另外一个类中使用，被嵌入的类也可以称作变量。</p>
-<ul>
-<li>mixins 还有一种形式叫做 <a href="http://lesscss.cn/features/#mixins-parametric-feature" target="_blank" rel="noopener">Parametric Mixins</a>（混入参数），less 也支持这一特性：</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.borderRadius</span>(<span class="variable">@radius</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用已定义的样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.borderRadius</span>(<span class="number">10px</span>); <span class="comment">// 把 10px 作为参数传递给样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.borderRadius</span>(<span class="number">3px</span>); <span class="comment">// // 把 3px 作为参数传递给样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">3px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">3px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<ul>
-<li>还可以给 mixins 的参数定义一个默认值，如</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.borderRadius</span>(<span class="variable">@radius</span>:<span class="number">5px</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.borderRadius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<ul>
-<li>像 js 中 arguments 一样，mixins 也有 <a href="http://lesscss.cn/features/#mixins-parametric-feature-the-arguments-variable" target="_blank" rel="noopener">@arguments</a> 变量。当 mixins 引用这个参数时，该参数表示所有的变量。很多情况下该参数可以省去很多代码。</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.boxShadow</span>(<span class="variable">@x</span>:<span class="number">0</span>,<span class="variable">@y</span>:<span class="number">0</span>,<span class="variable">@blur</span>:<span class="number">1px</span>,<span class="variable">@color</span>:<span class="number">#000</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-box-shadow</span>: <span class="variable">@arguments</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="variable">@arguments</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">box-shadow</span>: <span class="variable">@arguments</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.boxShadow</span>(<span class="number">2px</span>, <span class="number">2px</span>, <span class="number">3px</span>, <span class="number">#f36</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="number">#ff36</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="number">#ff36</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="number">#ff36</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<ul>
-<li>为了解决在团队开发中使用大量选择器时解决选择器之间的重名问题，less 在 mixins 的基础上做了扩展，采用命名空间（<a href="http://lesscss.cn/features/#features-overview-feature-namespaces-and-accessors" target="_blank" rel="noopener">Namespaces</a>）的方法避免重名：</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#mynamespace</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.home</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    ...;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.user</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    ...;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>这样就定义了一个名为 mynamespace 的命名空间，如果要复用 user 这个选择器，只需要在需要混入这个选择器的地方这样使用即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#mynamespace &gt; .user。</span></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><h4 id="Nested-Rules（嵌套规则）"><a href="#Nested-Rules（嵌套规则）" class="headerlink" title="Nested Rules（嵌套规则）"></a><a href="http://lesscss.cn/features/#features-overview-feature-nested-rules" target="_blank" rel="noopener">Nested Rules（嵌套规则）</a></h4></li>
-</ol>
-<p>css 中会采用从外到内的选择器嵌套定义或给特定元素加 class 或 id 的方式解决多层元素嵌套的情况。在 less 中可以这样写：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"home"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"top"</span>&gt;</span>top<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"center"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
-
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: blue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#top</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#center</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="selector-id">#left</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="selector-id">#right</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: blue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#top</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#center</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#center</span> <span class="selector-id">#left</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#center</span> <span class="selector-id">#right</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>从上面的代码中可以看出，less 嵌套规则的写法是 html 中的 DOM 结构相对应的，这样样式表书写更加简洁，可读性更好。同时嵌套规则使得对伪元素的操作更为方便。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: red;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">text-decoration</span>: none;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 有 &amp; 时解析的是同一个元素或此元素的伪类，没有 &amp; 解析是后代元素</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">color</span>: black;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">text-decoration</span>: underline;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: red;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">text-decoration</span>: none;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: black;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">text-decoration</span>: underline;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><h4 id="Operations-及-Functions"><a href="#Operations-及-Functions" class="headerlink" title="Operations 及 Functions"></a><a href="http://lesscss.cn/features/#features-overview-feature-operations" target="_blank" rel="noopener">Operations</a> 及 <a href="http://lesscss.cn/features/#features-overview-feature-functions" target="_blank" rel="noopener">Functions</a></h4></li>
-</ol>
-<p>css 中数值型 value 如 color、padding、margin 等在某些情况下有着一定关系。less 中是这样组织处理这些数值之间的关系的：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@init:</span> <span class="number">#111111</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@transition:</span> <span class="variable">@init</span>*<span class="number">2</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.switchColor</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="variable">@transition</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.switchColor</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="number">#222222</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>使用 less 的 operations 特性可以对数值型的 value（数字、颜色、变量等）进行加减乘除四则运算。同时 less 针对 color 操作提供了一组函数：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">lighten</span>(<span class="variable">@color</span>, <span class="number">10%</span>);           <span class="comment">// return a color which is 10% *lighter* than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">darken</span>(<span class="variable">@color</span>, <span class="number">10%</span>);            <span class="comment">// return a color which is 10% *darker* than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">saturate</span>(<span class="variable">@color</span>, <span class="number">10%</span>);          <span class="comment">// return a color 10% *more* saturated than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">desaturate</span>(<span class="variable">@color</span>, <span class="number">10%</span>);        <span class="comment">// return a color 10% *less* saturated than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">fadein</span>(<span class="variable">@color</span>, <span class="number">10%</span>);            <span class="comment">// return a color 10% *less* transparent than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">fadeout</span>(<span class="variable">@color</span>, <span class="number">10%</span>);           <span class="comment">// return a color 10% *more* transparent than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">spin</span>(<span class="variable">@color</span>, <span class="number">10</span>);               <span class="comment">// return a color with a 10 degree larger in hue than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">spin</span>(<span class="variable">@color</span>, -<span class="number">10</span>);              <span class="comment">// return a color with a 10 degree smaller hue than @color</span></span></pre></td></tr></table></figure>
-
-<p>PS: 上述代码引自 less css 官方网站，详情请参见 <a href="http://lesscss.org/functions/#color-definition" target="_blank" rel="noopener">http://lesscss.org/functions/#color-definition</a>。</p>
-<p>这些函数的使用方法同 js 中函数的使用。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">init</span>: <span class="number">#f04615</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#body</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">background-color</span>: fadein(<span class="variable">@init</span>, <span class="number">10%</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>经过编译生成的 css 文件如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#body</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f04615</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>less 中的这些函数同样可以被调用和传递参数。其主要作用是提供颜色变换的功能，先把颜色转换成 HSL 色，然后在此基础上进行操作。less 还提供了获取颜色值的方法，这里不一一赘述。<br>less 提供的运算及函数特性适用于实现页面组件特性，比如组件切换时的渐入渐出。</p>
-<ol start="5">
-<li><h4 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a><a href="http://lesscss.cn/features/#features-overview-feature-comments" target="_blank" rel="noopener">Comments</a></h4></li>
-</ol>
-<p>适当的注释是保证代码可读性的必要手段，less 对注释的支持有两种方式：单行注释和多行注释。类似与 js 中的注释，但有一点不同的是：less 中单行注释的内容(// 单行注释 ) 在编译后的 css 中不显示，需要加以注意。</p>
-<h4 id="Less-vs-Sass"><a href="#Less-vs-Sass" class="headerlink" title="Less vs Sass"></a>Less vs Sass</h4><p>同类框架还有 Sass : <a href="http://sass-lang.com/" target="_blank" rel="noopener">http://sass-lang.com/</a>。与 less 相比，两者都属于 css 预处理器，功能上大同小异，都是使用类似程序式语言的方式书写 css, 都具有变量、mixins、嵌套、继承等特性，最终目的都是方便 css 的书写及维护。</p>
-<p>less 和 Sass 互相促进互相影响，相比之下 less 更接近 css 语法。两者之间的详细比较可以参阅 <a href="https://gist.github.com/674726" target="_blank" rel="noopener">https://gist.github.com/674726</a>。</p>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>本文针对 less 的基本功能做了概述，更多高级功能如：字符串插值、服务器端使用配置、js 表达式、避免编译等可以参见 less 官网。</p>
-<h3 id="相关主题"><a href="#相关主题" class="headerlink" title="相关主题"></a>相关主题</h3><ul>
-<li><a href="http://lesscss.org/" target="_blank" rel="noopener">Less 官方网站</a></li>
-<li><a href="http://sass-lang.com/" target="_blank" rel="noopener">Sass 官方网站</a></li>
-<li><a href="https://www.cnblogs.com/wangpenghui522/p/5467560.html" target="_blank" rel="noopener">Sass/Less Comparison</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3386,7 +3489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3397,7 +3500,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3408,7 +3511,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3496,7 +3599,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.6k</span>
+    <span title="Site words total count">26.3k</span>
   
 -->
 </div>
@@ -3527,7 +3630,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全网字数统计：22.6k字</span>
+  <span class="post-count">全网字数统计：26.3k字</span>
 </div>
 
         

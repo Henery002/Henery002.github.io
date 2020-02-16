@@ -295,6 +295,598 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/02/28/2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/2-1.%20%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%90%AD%E5%BB%BALinux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url">在本地计算机搭建Linux开发环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T16:39:00+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">工程搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>2018/02/28 16:39 在自己的计算机（主机名：myCent）上配置 Linux、xshell、xftp 成功：<br>虚拟机名：Henery CentOS<br>用 户 名：root<br>密 码：datatom</p>
+</blockquote>
+<h3 id="大致过程："><a href="#大致过程：" class="headerlink" title="大致过程："></a>大致过程：</h3><h4 id="1-安装-CentOS-7，配置-IP"><a href="#1-安装-CentOS-7，配置-IP" class="headerlink" title="1. 安装 CentOS 7，配置 IP"></a>1. 安装 CentOS 7，配置 IP</h4><blockquote>
+<p>[注]：安装第一步中选择“自定义”安装。</p>
+</blockquote>
+<ol>
+<li><p>在安装完 CentOS 后，创建虚拟机时，必须将虚拟机参数：网络适配器-网络连接设置为 <font color="red">桥接模式</font>（不是 NAT 模式），否则在后续使用 xshell 时无法连接到虚拟主机。<br><img src="../images/linux-environment/01.png" alt="1"></p>
+</li>
+<li><p>配置虚拟机 IP，然后重启网络<br><font color="red">vi /etc/sysconfig/network-scripts/ifcfg-ens33</font><br><img src="../images/linux-environment/02.png" alt="2">（该内容在 02-2 中有记录，在自己的计算机上配置的 IP 为 192.168.1.221）<br><font color="red">service network restart</font><br>查看 linux IP 是否设置成功：<br><font color="red">ip addr</font><br><img src="../images/linux-environment/03.png" alt="3"></p>
+</li>
+</ol>
+<h4 id="2-安装-nodejs、npm"><a href="#2-安装-nodejs、npm" class="headerlink" title="2. 安装 nodejs、npm"></a>2. 安装 nodejs、npm</h4><ol>
+<li><p>官网下载 nodejs 对应版本压缩包（此处下载到 v8.9.3 版本，<font color="red">后来(第 3 步中)证明 v8.9 的版本过高，存在问题，此处建议直接安装 v7.9.0 版本）</font>，可使用 xftp 上传到 linux 服务器（可放在 /tmp 目录下）<br><img src="../images/linux-environment/04.png" alt="4"></p>
+</li>
+<li><p>使用 <font color="red">tar -xvf node-v8.9.3-linux-x64.tar.xz</font> 命令在当前文件夹 /tmp 解压 <font color="red">（后来发现 /tmp 文件夹下的文件存在关机后消失问题，所以可以更换保存路径于 /opt 下）</font><br><img src="../images/linux-environment/05.png" alt="5"></p>
+</li>
+<li><p>通过建立<strong>软连接</strong>，将 node、npm 变为全局命令。参考文章：<a href="https://www.cnblogs.com/liuqi/p/6483317.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuqi/p/6483317.html</a><br><img src="../images/linux-environment/06.png" alt="6"></p>
+<p>查看，安装成功：<br><img src="../images/linux-environment/07.png" alt="7"><br><strong>后来重装 node 后，更改了安装位置：</strong></p>
+<p><img src="../images/linux-environment/08.png" alt="8"><br>【注】：</p>
+<ol>
+<li><p>在安装 node、npm 时，当执行 node -v 或 npm -v 命令，<font color="red">系统提示权限不够时</font>，可使用以下方法解决：<br>进入到 node 或 npm 所在路径下，执行 chmod a+x npm 或 chmod a+x node 为文件设定可访问权限。具体可百度。</p>
+</li>
+<li><p>软连接配置成功后可到 <font color="red">.usr/local/bin</font> 下查看：<br><img src="../images/linux-environment/09.png" alt="9"></p>
+</li>
+<li><p>上述安装了 node 的高版本，再使用时会带来一些意外报错问题，建议将 nodejs 降级（v7 版本）。<br>如：在 d-vault 项目中启动服务（npm start）时，报错（Node-Sass 不支持问题）导致无法开启项目：<br><img src="../images/linux-environment/10.png" alt="10"></p>
+<p>由于上述方法采用 通过解压 node.tar 包、设置软连接 的方式安装 node，所以要将 <font color="red">node 重装到 v7 版本</font>时，只需要：</p>
+<ol>
+<li>删除原 node.tar 包 解压出来的文件夹</li>
+<li>删除原设置的软连接<br>cd /usr/local/bin<br>rm -rf node<br>rm -rf npm</li>
+<li>重新下载所需版本 node.tar 包，解压</li>
+<li>重新设置软连接<br><font color="red">ln -s /tmp/node-v7.9.0-linux-x64/bin/npm /usr/local/bin</font><br><font color="red">ln -s /tmp/node-v7.9.0-linux-x64/bin/node /usr/local/bin</font></li>
+<li>检查是否安装成功<br>node -v<br>npm -v</li>
+</ol>
+<p>由于上述重装了 node，所以需要重装一下 node-sass ，然后再次运行 npm start ：<br><font color="red">npm install node-sass</font><br><img src="../images/linux-environment/11.png" alt="11"><br><img src="../images/linux-environment/12.png" alt="12"><br>尽管依然有报错，但未影响服务开启。</p>
+<p>【注】：安装 nodejs，还有其他方式，上述只是其中一种。</p>
+</li>
+<li><p>安装 git，拉取代码库<br>若 CentOS 系统未自带 git 版本，可使用 yum 命令安装 git ，但是版本较低。后续可重装高版本 git。<br>参考文章：<a href="http://blog.csdn.net/lianxiaopang/article/details/78501569" target="_blank" rel="noopener">CentOS 安装升级高版本 git</a>，以下为该文章解决方式。</p>
+<ol>
+<li><p>yum install git #安装过程较冗长，慢慢等待。此命令安装了 git v1 版本较低<br>【注】：在运行 yum 命令时，系统可能会报错：Could not retrieve mirrorlist <a href="http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os" target="_blank" rel="noopener">http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os</a> error was14:……<br>解决方法：配置 /etc/resolv.conf 文件。参考文章：<a href="http://blog.csdn.net/a791123503/article/details/77823498" target="_blank" rel="noopener">http://blog.csdn.net/a791123503/article/details/77823498</a><br>vi /etc/resolv.conf<br>键入：nameserver 8.8.8.8<br>search localdomain #后保存退出<br><img src="../images/linux-environment/13.png" alt="13"><br>可成功解决 yum 命令上述异常执行的问题</p>
+</li>
+<li><p>yum remove git #先卸载低版本 git</p>
+</li>
+<li><p>yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel gcc perl-ExtUtils-MakeMaker package #安装依赖包<br> 【注】：在同事电脑上首次安装 linux、在 linux 在安装 git、安装 git 依赖包时，执行该命令不久后安装进程停滞：<br> <img src="../images/linux-environment/14.jpg" alt="14"><br> 电脑蓝屏<br> 【解决】是否能解决待验证：百度 <a href="https://blog.csdn.net/dmt742055597/article/details/78580008?locationNum=10&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/dmt742055597/article/details/78580008?locationNum=10&amp;fps=1</a><br> 错误原因：未安装 deltarpm<br> 依次执行：<br> yum provides ‘*/applydeltarpm’<br> yum install deltarpm<br> 然后再重新继续执行依赖包安装</p>
+</li>
+<li><p>下载高版本 git ( <a href="https://www.kernel.org/pub/software/scm/git/git-2.13.2.tar.gz)，使用命令" target="_blank" rel="noopener">https://www.kernel.org/pub/software/scm/git/git-2.13.2.tar.gz)，使用命令</a> tar -xvf name 解压放于 linux 服务器 /usr/src 下</p>
+</li>
+<li><p>cd git-2.13.2<br>./configure –prefix=/usr/local/git all<br>make &amp;&amp; make install</p>
+</li>
+<li><p>将 git 加入环境变量<br>echo “export PATH=$PATH:/usr/local/git/bin” &gt;&gt; /etc/bashrc<br>source /etc/bashrc</p>
+</li>
+<li><p>验证 git 是否安装成功<br>git –version #非 git -v<br><img src="../images/linux-environment/15.png" alt="15"></p>
+</li>
+<li><p>安装 git lfs（暂略）</p>
+</li>
+<li><p>拉取代码库<br>git clone “<a href="http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git&quot;" target="_blank" rel="noopener">http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git&quot;</a><br>此处报错：fatal: Unable to find remote helper for ‘http’<br><img src="../images/linux-environment/16.png" alt="16"></p>
+<p><strong><em>法一：</em></strong><br>查阅资料发现可能是由于 git 版本缺少 curl 和 expat 组件的支持，通过以下方式解决：（参考文章：）<br><a href="https://stackoverflow.com/questions/4569089/cant-update-rvm-fatal-unable-to-find-remote-helper-for-http" target="_blank" rel="noopener">https://stackoverflow.com/questions/4569089/cant-update-rvm-fatal-unable-to-find-remote-helper-for-http</a></p>
+<ol>
+<li>下载 git 的 tar 包，解压于 /usr/src 下</li>
+<li>cd git-2.13.2</li>
+<li>./configure –with-curl –with-expat</li>
+<li>make</li>
+<li>sudo make install<br>重新执行 git clone，成功拉取。</li>
+</ol>
+<p><strong><em>法二：</em></strong><br>后来发现法一已经不再生效，所以查找到法二。<br>原因为 curl-devel 未安装<br>参考文章：<a href="https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone" target="_blank" rel="noopener">https://stackoverflow.com/questions/8329485/unable-to-find-remote-helper-for-https-during-git-clone</a><br><img src="../images/linux-environment/17.png" alt="17"></p>
+<ol>
+<li>yum install curl-devel</li>
+<li>#cd to anywhere the source for git is</li>
+<li>cd /usr/src/git-2.13.2 #linux 下 git 的安装位置</li>
+<li>./configure</li>
+<li>make</li>
+<li>make install<br>重新执行 git clone ，成功。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="3-安装-Xshell-5、Xftp-5"><a href="#3-安装-Xshell-5、Xftp-5" class="headerlink" title="3. 安装 Xshell 5、Xftp 5"></a>3. 安装 Xshell 5、Xftp 5</h4><p>使用虚拟主机 ip 连接到虚拟主机，键入 用户名和密码 连接。<br><img src="../images/linux-environment/18.png" alt="18"></p>
+<h4 id="4-……"><a href="#4-……" class="headerlink" title="4. ……"></a>4. ……</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2017/12/17/2.%20Less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/17/2.%20Less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url">Less学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-17T15:47:25+08:00">
+                2017-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">技术栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>css 的语法相对简单，对使用者的要求较低，但同时也带来一些问题：css 是一门非程序式语言，没有变量、函数、scope（作用域）等概念，因此需要书写大量看似没有逻辑的代码，不方便维护及扩展，不利于复用，很难写出组织良好且易于维护的 css 代码。</p>
+<p>less 在 css 的语法基础之上，引入了变量、Mixin、运算以及函数等功能，大大简化了 css 的编写，并且降低了 css 的维护成本。</p>
+<h3 id="less-原理及使用方式背景"><a href="#less-原理及使用方式背景" class="headerlink" title="less 原理及使用方式背景"></a>less 原理及使用方式背景</h3><p>本质上，less 包含一套自定义的语法及一个解析器，用户根据这些语法定义自己的样式规则，这些规则最终会通过解析器，编译生成对应的 css 文件。less 并没有裁剪 css 原有的特性，更不是用来取代 css 的，而是在现有 css 语法的基础上，为其加入程序式语言的特性。下面是一个简单的例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@color: #4D926F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: @color;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: @color;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="number">#4d926f</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="number">#4d926f</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>less 可以直接在客户端使用，也可以在服务器端使用。在实际项目开发中，推荐使用第三种方式，即将 less 文件编译生成静态 css 文件，并在 html 文档中应用。</p>
+<ul>
+<li><h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4>从 <a href="http://lesscss.org下载" target="_blank" rel="noopener">http://lesscss.org下载</a> less.js 源文件后就开展以直接在客户端使用，然后在 html 中引入 less 源文件：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet/less"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"styles.less"</span> /&gt;</span></span></pre></td></tr></table></figure>
+
+<p>less 源文件的引入方式与标准同 css。</p>
+<p>需要注意的是，在引入 .less 文件时，rel 属性要设置为“stylesheet/less”且 less 源文件一定要在 less.js 引入之前引入，这样才能保证 less 源文件正确编译解析。</p>
+<ul>
+<li><h4 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h4>less 在服务器端的使用借助于 less 编译器，将 less 源文件编译生成最终的 css 文件。可以使用 node 包管理器 npm 安装 less，安装成功后就可以在 node 环境中对 less 源文件进行编译。</li>
+</ul>
+<p>在项目开发初期，无论采用客户端或服务器端用法，都要想办法将用到的 css 或 less 文件引入到 html 页面或桥接文件中，less 中使用 <a href="http://lesscss.cn/features/#features-overview-feature-importing" target="_blank" rel="noopener">Importing</a>。可以通过 @import 引入需要的 .less 或 .css 文件。 如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> “variables.less”;</span></pre></td></tr></table></figure>
+
+<p>.less 文件也可以省略后缀名，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> “variables”;</span></pre></td></tr></table></figure>
+
+<p>引入 css 同 less 文件一样，只是 .css 后缀名不能省略。</p>
+<ul>
+<li><h4 id="使用编译生成的静态-css-文件"><a href="#使用编译生成的静态-css-文件" class="headerlink" title="使用编译生成的静态 css 文件"></a>使用编译生成的静态 css 文件</h4>通过 less 编译器，将 less 文件编译成为 css 文件，在 html 文章中引入使用。这里要强调的一点，less 完全兼容 css 语法，也就是说可以将标准的 css 文件直接改成 .less 格式，less 编译器可以完全识别。</li>
+</ul>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ol>
+<li><h4 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a><a href="http://lesscss.cn/features/#variables-feature" target="_blank" rel="noopener">Variables</a></h4></li>
+</ol>
+<p>less 允许开发者自定义变量，变量可以在全局样式中使用，变量使得样式修改更简便。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@border-color:</span> <span class="number">#b5bcc7</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mythemes</span> <span class="selector-tag">tableBorder</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="variable">@border-color</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mythemes</span> <span class="selector-tag">tableBorder</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#b5bcc7</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>从上述代码中可以看出，变量是 value（值）级别的复用，可以将相同的值定义成变量统一管理。</p>
+<p>该特性适用于定义主题，如将背景颜色、字体颜色、边框属性等常规样式进行统一定义，这样不同的主题只需要定义不同的变量文件即可。该特性也同样适用于 CSS RESET（重置样式表），在 web 开发中，有时需要屏蔽浏览器默认的样式行为而需要重新定义样式表来覆盖浏览器的默认行为，使用 less 的变量特性就可以在不同的项目间重用样式表，仅需要在不同的项目样式表中根据需求重新给变量赋值即可。</p>
+<p>less 中的变量和其他编程语言一样，可以实现值的复用，同样它也有作用域 <a href="http://lesscss.cn/features/#features-overview-feature-scope" target="_blank" rel="noopener">Scope</a>，即局部变量 or 全局变量的概念，查找变量的顺序是先在局部定义中找，如果找不到，则查找上级定义，直至全局。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@width:</span> <span class="number">20px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#homeDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="variable">@width:</span> <span class="number">30px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#centerDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="variable">@width</span>; <span class="comment">// 此处应该取最近定义的变量 width 的值 30px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#leftDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="variable">@width</span>; <span class="comment">// 此处应该取最上面定义的变量 width 的值 20px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#homeDiv</span> <span class="selector-id">#centerDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">30px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#leftDiv</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><h4 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a><a href="http://lesscss.cn/features/#mixins-feature" target="_blank" rel="noopener">Mixins</a></h4></li>
+</ol>
+<p>同 Sass 一样，很多动态语言都支持 mixins 特性，它是多重继承的一种实现。在 less 中，mixins 是指在一个 class 中引入另外一个已经定义的 class，就像在当前 class 中增加一个属性一样。</p>
+<p>mixins 在 less 中的使用：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.roundedCorners</span>(<span class="variable">@radius</span>:<span class="number">5px</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在另外的样式选择器中使用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.roundedCorners</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#footer</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.roundedCorners</span>(<span class="number">10px</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#footer</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>从上面的代码我们可以看出：mixins 其实是一种嵌套，它允许将一个类嵌入到另外一个类中使用，被嵌入的类也可以称作变量。</p>
+<ul>
+<li>mixins 还有一种形式叫做 <a href="http://lesscss.cn/features/#mixins-parametric-feature" target="_blank" rel="noopener">Parametric Mixins</a>（混入参数），less 也支持这一特性：</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.borderRadius</span>(<span class="variable">@radius</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用已定义的样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.borderRadius</span>(<span class="number">10px</span>); <span class="comment">// 把 10px 作为参数传递给样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.borderRadius</span>(<span class="number">3px</span>); <span class="comment">// // 把 3px 作为参数传递给样式选择器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">3px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">3px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<ul>
+<li>还可以给 mixins 的参数定义一个默认值，如</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.borderRadius</span>(<span class="variable">@radius</span>:<span class="number">5px</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.borderRadius</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<ul>
+<li>像 js 中 arguments 一样，mixins 也有 <a href="http://lesscss.cn/features/#mixins-parametric-feature-the-arguments-variable" target="_blank" rel="noopener">@arguments</a> 变量。当 mixins 引用这个参数时，该参数表示所有的变量。很多情况下该参数可以省去很多代码。</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.boxShadow</span>(<span class="variable">@x</span>:<span class="number">0</span>,<span class="variable">@y</span>:<span class="number">0</span>,<span class="variable">@blur</span>:<span class="number">1px</span>,<span class="variable">@color</span>:<span class="number">#000</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-box-shadow</span>: <span class="variable">@arguments</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="variable">@arguments</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">box-shadow</span>: <span class="variable">@arguments</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.boxShadow</span>(<span class="number">2px</span>, <span class="number">2px</span>, <span class="number">3px</span>, <span class="number">#f36</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-moz-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="number">#ff36</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="number">#ff36</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="number">#ff36</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<ul>
+<li>为了解决在团队开发中使用大量选择器时解决选择器之间的重名问题，less 在 mixins 的基础上做了扩展，采用命名空间（<a href="http://lesscss.cn/features/#features-overview-feature-namespaces-and-accessors" target="_blank" rel="noopener">Namespaces</a>）的方法避免重名：</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#mynamespace</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.home</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    ...;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.user</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    ...;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这样就定义了一个名为 mynamespace 的命名空间，如果要复用 user 这个选择器，只需要在需要混入这个选择器的地方这样使用即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#mynamespace &gt; .user。</span></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><h4 id="Nested-Rules（嵌套规则）"><a href="#Nested-Rules（嵌套规则）" class="headerlink" title="Nested Rules（嵌套规则）"></a><a href="http://lesscss.cn/features/#features-overview-feature-nested-rules" target="_blank" rel="noopener">Nested Rules（嵌套规则）</a></h4></li>
+</ol>
+<p>css 中会采用从外到内的选择器嵌套定义或给特定元素加 class 或 id 的方式解决多层元素嵌套的情况。在 less 中可以这样写：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"home"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"top"</span>&gt;</span>top<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"center"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: blue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#top</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-id">#center</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="selector-id">#left</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="selector-id">#right</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: blue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#top</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#center</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#center</span> <span class="selector-id">#left</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#home</span> <span class="selector-id">#center</span> <span class="selector-id">#right</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">border</span>: outset;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">float</span>: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">40%</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>从上面的代码中可以看出，less 嵌套规则的写法是 html 中的 DOM 结构相对应的，这样样式表书写更加简洁，可读性更好。同时嵌套规则使得对伪元素的操作更为方便。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: red;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">text-decoration</span>: none;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 有 &amp; 时解析的是同一个元素或此元素的伪类，没有 &amp; 解析是后代元素</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">color</span>: black;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">text-decoration</span>: underline;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: red;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">text-decoration</span>: none;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: black;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">text-decoration</span>: underline;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><h4 id="Operations-及-Functions"><a href="#Operations-及-Functions" class="headerlink" title="Operations 及 Functions"></a><a href="http://lesscss.cn/features/#features-overview-feature-operations" target="_blank" rel="noopener">Operations</a> 及 <a href="http://lesscss.cn/features/#features-overview-feature-functions" target="_blank" rel="noopener">Functions</a></h4></li>
+</ol>
+<p>css 中数值型 value 如 color、padding、margin 等在某些情况下有着一定关系。less 中是这样组织处理这些数值之间的关系的：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@init:</span> <span class="number">#111111</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="variable">@transition:</span> <span class="variable">@init</span>*<span class="number">2</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.switchColor</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="variable">@transition</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.switchColor</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">color</span>: <span class="number">#222222</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>使用 less 的 operations 特性可以对数值型的 value（数字、颜色、变量等）进行加减乘除四则运算。同时 less 针对 color 操作提供了一组函数：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">lighten</span>(<span class="variable">@color</span>, <span class="number">10%</span>);           <span class="comment">// return a color which is 10% *lighter* than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">darken</span>(<span class="variable">@color</span>, <span class="number">10%</span>);            <span class="comment">// return a color which is 10% *darker* than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">saturate</span>(<span class="variable">@color</span>, <span class="number">10%</span>);          <span class="comment">// return a color 10% *more* saturated than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">desaturate</span>(<span class="variable">@color</span>, <span class="number">10%</span>);        <span class="comment">// return a color 10% *less* saturated than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">fadein</span>(<span class="variable">@color</span>, <span class="number">10%</span>);            <span class="comment">// return a color 10% *less* transparent than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">fadeout</span>(<span class="variable">@color</span>, <span class="number">10%</span>);           <span class="comment">// return a color 10% *more* transparent than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">spin</span>(<span class="variable">@color</span>, <span class="number">10</span>);               <span class="comment">// return a color with a 10 degree larger in hue than @color</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">spin</span>(<span class="variable">@color</span>, -<span class="number">10</span>);              <span class="comment">// return a color with a 10 degree smaller hue than @color</span></span></pre></td></tr></table></figure>
+
+<p>PS: 上述代码引自 less css 官方网站，详情请参见 <a href="http://lesscss.org/functions/#color-definition" target="_blank" rel="noopener">http://lesscss.org/functions/#color-definition</a>。</p>
+<p>这些函数的使用方法同 js 中函数的使用。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">init</span>: <span class="number">#f04615</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#body</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">background-color</span>: fadein(<span class="variable">@init</span>, <span class="number">10%</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>经过编译生成的 css 文件如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#body</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f04615</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>less 中的这些函数同样可以被调用和传递参数。其主要作用是提供颜色变换的功能，先把颜色转换成 HSL 色，然后在此基础上进行操作。less 还提供了获取颜色值的方法，这里不一一赘述。<br>less 提供的运算及函数特性适用于实现页面组件特性，比如组件切换时的渐入渐出。</p>
+<ol start="5">
+<li><h4 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a><a href="http://lesscss.cn/features/#features-overview-feature-comments" target="_blank" rel="noopener">Comments</a></h4></li>
+</ol>
+<p>适当的注释是保证代码可读性的必要手段，less 对注释的支持有两种方式：单行注释和多行注释。类似与 js 中的注释，但有一点不同的是：less 中单行注释的内容(// 单行注释 ) 在编译后的 css 中不显示，需要加以注意。</p>
+<h4 id="Less-vs-Sass"><a href="#Less-vs-Sass" class="headerlink" title="Less vs Sass"></a>Less vs Sass</h4><p>同类框架还有 Sass : <a href="http://sass-lang.com/" target="_blank" rel="noopener">http://sass-lang.com/</a>。与 less 相比，两者都属于 css 预处理器，功能上大同小异，都是使用类似程序式语言的方式书写 css, 都具有变量、mixins、嵌套、继承等特性，最终目的都是方便 css 的书写及维护。</p>
+<p>less 和 Sass 互相促进互相影响，相比之下 less 更接近 css 语法。两者之间的详细比较可以参阅 <a href="https://gist.github.com/674726" target="_blank" rel="noopener">https://gist.github.com/674726</a>。</p>
+<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>本文针对 less 的基本功能做了概述，更多高级功能如：字符串插值、服务器端使用配置、js 表达式、避免编译等可以参见 less 官网。</p>
+<h3 id="相关主题"><a href="#相关主题" class="headerlink" title="相关主题"></a>相关主题</h3><ul>
+<li><a href="http://lesscss.org/" target="_blank" rel="noopener">Less 官方网站</a></li>
+<li><a href="http://sass-lang.com/" target="_blank" rel="noopener">Sass 官方网站</a></li>
+<li><a href="https://www.cnblogs.com/wangpenghui522/p/5467560.html" target="_blank" rel="noopener">Sass/Less Comparison</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2017/01/01/1.%20hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -503,7 +1095,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -514,7 +1106,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -525,7 +1117,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -613,7 +1205,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.6k</span>
+    <span title="Site words total count">26.3k</span>
   
 -->
 </div>
@@ -644,7 +1236,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全网字数统计：22.6k字</span>
+  <span class="post-count">全网字数统计：26.3k字</span>
 </div>
 
         

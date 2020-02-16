@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="开发环境,npm,linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Henery 的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Leopard【注意】：  当前采用共享文件夹的方式开发，不需要开启相关服务。 代码位于虚拟机下 &#x2F;mnt&#x2F;hgfs&#x2F;code&#x2F;leopard 位置，非 &#x2F;home&#x2F;...   D-Vault项目搭建配置大致流程：  在Linux环境下拉取远程代码在linux下进入到指定目录下，执行： 1git lfs clone &quot;http:&#x2F;&#x2F;wei.fanguang:datatom.com@211.144.">
+<meta name="keywords" content="开发环境,npm,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目搭建&#x2F;配置注意点">
+<meta property="og:url" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2018&#x2F;08&#x2F;16&#x2F;2-3.%20%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BAand%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F%E7%82%B9&#x2F;index.html">
+<meta property="og:site_name" content="Henery 的博客">
+<meta property="og:description" content="Leopard【注意】：  当前采用共享文件夹的方式开发，不需要开启相关服务。 代码位于虚拟机下 &#x2F;mnt&#x2F;hgfs&#x2F;code&#x2F;leopard 位置，非 &#x2F;home&#x2F;...   D-Vault项目搭建配置大致流程：  在Linux环境下拉取远程代码在linux下进入到指定目录下，执行： 1git lfs clone &quot;http:&#x2F;&#x2F;wei.fanguang:datatom.com@211.144.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-16T10:37:10.569Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://henery002.github.io/2018/08/16/2-3. 项目搭建and配置注意点/"/>
+
+
+
+
+
+  <title>项目搭建/配置注意点 | Henery 的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c37933cfeefcf4766b4da5ed73468b66";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Henery 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">心路历程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2018/08/16/2-3.%20%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BAand%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">项目搭建/配置注意点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T10:00:00+08:00">
+                2018-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">工程搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  925
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Leopard"><a href="#Leopard" class="headerlink" title="Leopard"></a>Leopard</h2><p>【注意】：</p>
+<ol>
+<li>当前采用共享文件夹的方式开发，不需要开启相关服务。</li>
+<li>代码位于虚拟机下 <code>/mnt/hgfs/code/leopard</code> 位置，非 <code>/home/...</code></li>
+</ol>
+<hr>
+<h2 id="D-Vault"><a href="#D-Vault" class="headerlink" title="D-Vault"></a>D-Vault</h2><p><strong>项目搭建配置大致流程：</strong></p>
+<ol>
+<li><p>在Linux环境下拉取远程代码<br>在linux下进入到指定目录下，执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git lfs clone <span class="string">"http://wei.fanguang:datatom.com@211.144.114.26:5088/trunk/d-vault.git"</span></span></pre></td></tr></table></figure>
+<p>从代码线上拉取完整代码（存放在linux环境下）。</p>
+</li>
+<li><p>修改相关配置<br>使用 <code>vi package.json</code> 命令修改以下文件：</p>
+<ol>
+<li><p><code>./webui/package.json</code> 删除 <code>cross-env</code> 前缀【d-vault项目中必须项】</p>
+</li>
+<li><p><code>./webui/dist/api/config.ini.json</code> 配置Linux主机IP（即<code>192.168.3.24</code>）【d-vault项目中必须项】</p>
+</li>
+</ol>
+</li>
+<li><p>导入 <code>node_modules</code> 包（用于开启 npm 服务，必须项，否则无法开启服务）</p>
+</li>
+<li><p>开启 npm 服务<br>在Linux下进入 <code>node-modules</code> 所在目录，开启 npm 服务：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd /home/code/d-vault-webui/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">npm start</span></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器端打开 <code>&quot;http://192.168.3.24:8989/#/home&quot;</code></p>
+</li>
+</ol>
+<p>【注意】：</p>
+<ol>
+<li>进入到虚拟机 <code>/home/code/d-vault/webui</code> 下开启 npm 服务（必须项）<br>若 npm 服务未开启或开启失败，无法访问 <code>192.168.1.221:8989/#/home</code>。开启失败原因可能是 该目录下 <code>node_modules</code> 包的问题。<br>建议先备份该包再重新拷贝到原位置，再次尝试。</li>
+<li>手动修改以下配置文件：<ol>
+<li><code>../webui/package.json</code>                  删除蓝色内容</li>
+<li><code>../webui/dist/api/config.ini.json</code>      配置IP</li>
+<li><code>../webui/src/conf/Conf.js</code>              将IP改为自己的节点 <code>192.168.1.221</code> （貌似不是必须？？？）</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="demo项目-ant-design-pro："><a href="#demo项目-ant-design-pro：" class="headerlink" title="demo项目 - ant-design-pro："></a>demo项目 - ant-design-pro：</h2><p>【注意】：<br>Linux下：</p>
+<ol>
+<li><code>git clone “http://...ant-design-pro.git”</code>      #从github上拉取源码</li>
+<li><code>npm install</code>                                   #进入到项目目录下安装依赖包</li>
+<li><code>npm start</code>                                     #启动服务<br>【注】：若此时系统中已存在其他项目被启动的npm服务（即192.168.3.24:8000等端口已被占用），<br>则此时系统会询问并自动为当前项目分配一个端口号，用以在浏览器中打开该项目页面，如：</li>
+</ol>
+<hr>
+<h2 id="demo项目"><a href="#demo项目" class="headerlink" title="demo项目"></a>demo项目</h2><p>【注意】：<br>  需进入到项目根目录下开启 npm 服务</p>
+<hr>
+<h2 id="Dana"><a href="#Dana" class="headerlink" title="Dana"></a>Dana</h2><hr>
+<h2 id="signal-tunning（上海交警城市大脑项目）"><a href="#signal-tunning（上海交警城市大脑项目）" class="headerlink" title="signal-tunning（上海交警城市大脑项目）"></a>signal-tunning（上海交警城市大脑项目）</h2><p><strong>项目开发环境：</strong><br>  <code>node 8.9.3</code>、<code>windows</code>（<code>linux</code>下因暂时无法搭建VPN，所以无法开发）</p>
+<p><strong>项目环境搭建大致流程：</strong><br>  由于该项目属于中途接手，所以脚手架之类的环境都已搭好，需要做的就是开启前端服务跑通页面。</p>
+<ol>
+<li>使用<code>Cisco anyconnect（VPN）</code>连接阿里内网；<br>【注意】：VPN的链接需要关闭杀毒软件、防火墙。</li>
+<li><code>npm install</code> 之后，使用 <code>sh honeycomb_start.sh</code> 命令开启服务（也可在<code>package.json</code>中配置使用 npm start 开启服务）<br>【注意】：若 <code>honeycomb_start</code> 命令找不到，可重新安装：<br><code>npm install -g honeycomb-cli@0.2.12</code></li>
+<li>打包：<br><code>sh honeycomb_package.sh</code><br>【注意】：该项目打包之后，貌似会自动删掉一部分东西，所以打包之前慎重，做好备份（貌似assets里的node_modules包会被删掉？）</li>
+</ol>
+<hr>
+<h2 id="PandaBI"><a href="#PandaBI" class="headerlink" title="PandaBI"></a>PandaBI</h2><p><strong>项目开发环境及架构：</strong></p>
+<ol>
+<li><code>linux</code></li>
+<li><code>react</code> + <code>redux</code></li>
+</ol>
+<p><strong>项目开发模式环境搭建：</strong><br>  在clone下来代码线后，<br>     1. <code>npm install</code></p>
+<hr>
+<h2 id="demo项目-create-react-app"><a href="#demo项目-create-react-app" class="headerlink" title="demo项目 - create-react-app"></a>demo项目 - create-react-app</h2><p><strong>项目开发环境及架构：</strong></p>
+<ol>
+<li><code>macOs</code> /<code>iTerm2</code>(bash)</li>
+<li><code>react</code></li>
+</ol>
+<p><strong>项目开发环境搭建流程：</strong></p>
+<ol>
+<li><p><code>github: https://github.com/Henery002/create-react-app</code></p>
+</li>
+<li><p>在目标路径下创建项目工程文件：【注：npx创建项目只是其中一种方式】</p>
+<ol>
+<li><code>npx create-react-app my-app</code></li>
+<li><code>cd my-app</code></li>
+<li><code>npm start</code> / <code>yarn start</code><br>【注】：npx可以理解为npm指令的简化命令，此处可拉取远程Git仓库并在本地创建初始化工程文件<code>app/</code>。它会帮你创建一个 <code>app/</code> 文件夹，并初始化项目文件结构，安装<code>package.json</code>依赖包。无需配置，可以直接到 <code>/src</code> 下编写react代码。</li>
+</ol>
+<p>图示：</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束&nbsp;<i class="fa fa-paw"></i>&nbsp;感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>举手之劳，你就可以推动GDP增长，维护世界和平</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/img/wechat.png" alt="魏范光 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/img/alipay.jpg" alt="魏范光 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="tag"><i class="fa fa-tag"> 开发环境</i></a>
+          
+            <a href="/tags/npm/" rel="tag"><i class="fa fa-tag"> npm</i></a>
+          
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"> linux</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/29/2-4.%20%E6%97%A5%E5%B8%B8%E7%BA%A0%E9%94%99%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="日常纠错报错记录（一）">
+                <i class="fa fa-chevron-left"></i> 日常纠错报错记录（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/3.%20React-Hooks/" rel="prev" title="React Hooks">
+                React Hooks <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/img/avatar_01.jpg"
+                alt="魏范光" />
+            
+              <p class="site-author-name" itemprop="name">魏范光</p>
+              <p class="site-description motion-element" itemprop="description">我心思慕你，如鹿思慕溪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Henery002" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5bf954006fb9a049ad76b694" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/henery_002" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Leopard"><span class="nav-number">1.</span> <span class="nav-text">Leopard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-Vault"><span class="nav-number">2.</span> <span class="nav-text">D-Vault</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目-ant-design-pro："><span class="nav-number">3.</span> <span class="nav-text">demo项目 - ant-design-pro：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目"><span class="nav-number">4.</span> <span class="nav-text">demo项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dana"><span class="nav-number">5.</span> <span class="nav-text">Dana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#signal-tunning（上海交警城市大脑项目）"><span class="nav-number">6.</span> <span class="nav-text">signal-tunning（上海交警城市大脑项目）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PandaBI"><span class="nav-number">7.</span> <span class="nav-text">PandaBI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo项目-create-react-app"><span class="nav-number">8.</span> <span class="nav-text">demo项目 - create-react-app</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魏范光</span>
+
+<!--
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">26.3k</span>
+  
+-->
+</div>
+
+
+
+
+
+
+
+
+
+<div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_pv">
+      本站访问用户:<span id="busuanzi_value_site_pv"></span>
+    </span>
+</div>
+
+<span class="post-meta-divider">|</span>
+<div class="powered-by">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+      本站访问总量:<span id="busuanzi_value_site_pv"></span>
+    </span>
+</div>
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全网字数统计：26.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
