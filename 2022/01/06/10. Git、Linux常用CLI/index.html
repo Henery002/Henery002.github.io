@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="CLI,git," />
 
 
 
@@ -114,13 +114,15 @@
 
 
 
-<meta name="description" content="我心思慕你，如鹿思慕溪">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Henery 的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;archives&#x2F;index.html">
+<meta name="description" content="本篇内容主要是根据实际项目中的经验积累与总结，归纳在当前的前端工作场景中高频使用的 git cli 及 linux cli，便于加深记忆与熟练使用。  一、Git">
+<meta name="keywords" content="CLI,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git&#x2F;Linux常用CLI">
+<meta property="og:url" content="https:&#x2F;&#x2F;henery002.github.io&#x2F;2022&#x2F;01&#x2F;06&#x2F;10.%20Git%E3%80%81Linux%E5%B8%B8%E7%94%A8CLI&#x2F;index.html">
 <meta property="og:site_name" content="Henery 的博客">
-<meta property="og:description" content="我心思慕你，如鹿思慕溪">
+<meta property="og:description" content="本篇内容主要是根据实际项目中的经验积累与总结，归纳在当前的前端工作场景中高频使用的 git cli 及 linux cli，便于加深记忆与熟练使用。  一、Git">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-01-06T07:40:00.000Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -151,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="https://henery002.github.io/archives/"/>
+  <link rel="canonical" href="https://henery002.github.io/2022/01/06/10. Git、Linux常用CLI/"/>
 
 
 
 
 
-  <title>归档 | Henery 的博客</title>
+  <title>Git/Linux常用CLI | Henery 的博客</title>
   
 
 
@@ -186,7 +188,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,421 +282,288 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://henery002.github.io/2022/01/06/10.%20Git%E3%80%81Linux%E5%B8%B8%E7%94%A8CLI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魏范光">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/img/avatar_01.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henery 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Git/Linux常用CLI</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-06T15:40:27+08:00">
+                2022-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 14 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
 
-      
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">技术栈</span>
+                  </a>
+                </span>
 
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2022">2022</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2022/01/06/10.%20Git%E3%80%81Linux%E5%B8%B8%E7%94%A8CLI/" itemprop="url">
-              
-                <span itemprop="name">Git/Linux常用CLI</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2022-01-06T15:40:27+08:00"
-              content="2022-01-06" >
-          01-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/15/9.%20%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%5BJSDoc%E7%89%88%5D/" itemprop="url">
-              
-                <span itemprop="name">你不知道的类型检查[JSDoc版]</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-15T10:00:00+08:00"
-              content="2019-11-15" >
-          11-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/09/8.%20Context%E5%9C%A8React%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F/" itemprop="url">
-              
-                <span itemprop="name">Context在React中的数据管理模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-09T17:36:24+08:00"
-              content="2019-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/05/7.%20Refs%E8%BD%AC%E5%8F%91/" itemprop="url">
-              
-                <span itemprop="name">Refs转发</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-06-05T10:00:00+08:00"
-              content="2019-06-05" >
-          06-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/17/6.%20%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" itemprop="url">
-              
-                <span itemprop="name">微信小程序开发</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-04-17T12:01:05+08:00"
-              content="2019-04-17" >
-          04-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/20/5.%20%E4%BD%BF%E7%94%A8components%E5%B1%9E%E6%80%A7%E5%AF%B9Table%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/" itemprop="url">
-              
-                <span itemprop="name">使用components属性对Table二次封装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-20T10:00:00+08:00"
-              content="2019-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/11/4.%20React%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Render-Props/" itemprop="url">
-              
-                <span itemprop="name">React设计模式-Render Props</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-11T11:42:14+08:00"
-              content="2019-01-11" >
-          01-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
+            
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/29/3.%20React-Hooks/" itemprop="url">
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">React Hooks</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  58
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-29T13:39:57+08:00"
-              content="2018-11-29" >
-          11-29
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/16/2-3.%20%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BAand%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F%E7%82%B9/" itemprop="url">
-              
-                <span itemprop="name">项目搭建/配置注意点</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-16T10:00:00+08:00"
-              content="2018-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/29/2-4.%20%E6%97%A5%E5%B8%B8%E7%BA%A0%E9%94%99%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="url">
-              
-                <span itemprop="name">日常纠错报错记录（第一篇）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-29T17:00:00+08:00"
-              content="2018-05-29" >
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
+        <blockquote>
+<p>本篇内容主要是根据实际项目中的经验积累与总结，归纳在当前的前端工作场景中高频使用的 git cli 及 linux cli，便于加深记忆与熟练使用。</p>
+</blockquote>
+<h2 id="一、Git"><a href="#一、Git" class="headerlink" title="一、Git"></a>一、Git</h2>
+      
     </div>
+    
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束&nbsp;<i class="fa fa-paw"></i>&nbsp;感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>举手之劳，你就可以推动GDP增长，维护世界和平</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/img/wechat.png" alt="魏范光 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/img/alipay.jpg" alt="魏范光 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CLI/" rel="tag"><i class="fa fa-tag"> CLI</i></a>
+          
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"> git</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/15/9.%20%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%5BJSDoc%E7%89%88%5D/" rel="next" title="你不知道的类型检查[JSDoc版]">
+                <i class="fa fa-chevron-left"></i> 你不知道的类型检查[JSDoc版]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -702,6 +571,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -722,8 +595,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -817,6 +699,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Git"><span class="nav-number">1.</span> <span class="nav-text">一、Git</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1017,6 +915,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
